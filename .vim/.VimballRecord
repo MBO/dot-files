@@ -1,0 +1,1 @@
+VimTAP-0.2.vba: call delete('/home/mirko/.vim/autoload/vimtap.vim')|call delete('/home/mirko/.vim/doc/VimTAP.txt')|call delete('/home/mirko/.vim/vtruntest.sh')|call delete('/home/mirko/.vim/LICENSE.VimTAP')
