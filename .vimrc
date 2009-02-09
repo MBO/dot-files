@@ -140,7 +140,7 @@ endif
 " function to switch over favourite colorschemes
 function! <SID>SwitchPSCStyle(inc)
     if !exists("s:colo_tab")
-        let s:colo_tab = [ "evening", "norwaytoday", "slate", "desert", "chlordane" ]
+        let s:colo_tab = [ "evening", "morning", "earthburn", "norwaytoday", "slate", "chlordane" ]
     endif
     if exists("s:colo_id")
         let s:colo_id = (s:colo_id + a:inc) % len(s:colo_tab)
@@ -227,7 +227,7 @@ MapToggle <F2> wrap
 MapToggle <F3> list
 
 " Tip 764
-nnoremap <CR> :set nohlsearch \| set hlsearch?<CR>
+"nnoremap <CR> :set nohlsearch \| set hlsearch?<CR>
 
 map <F5> :e!<CR>
 map <M-R> :e!<CR>
@@ -298,45 +298,3 @@ let ruby_space_errors=1
 let tex_fold_enabled=1
 let tex_comment_nospell=1
 
-
-"==============================================================================
-" test keymastera
-"==============================================================================
-"function SessionStart()
-"    let g:start_writing_time = reltime()[0]
-"    let g:keymaster_session = 1
-"endfunction
-"
-"function SessionStop()
-"    let a:sec = reltime()[0] - g:start_writing_time
-"    let g:keymaster_session = 0
-"    execute ":echo \"[Typing time: \" . (a:sec) . \"s]\""
-"endfunction
-"
-"function GuiStart()
-"    execute :wincmd n
-"    execute :wincmd r
-"    execute :windo :set scrollbind
-"    execute :syncbind
-"    execute :resize -1
-"endfunction
-"
-"function CurSessionTime()
-"    if !exists("g:keymaster_session")
-"        let g:keymaster_session = 0
-"    endif
-"    let a:rs = 0
-"    if g:keymaster_session == 1
-"        let a:rs = reltime()[0] - g:start_writing_time
-"    endif
-"    return "[Typing time: " . a:rs . "s]"
-"endfunction
-"
-"augroup session
-"    autocmd!
-"    autocmd VimEnter *.keymaster call GuiStart()
-"    autocmd InsertEnter * call SessionStart()
-"    autocmd InsertLeave * call SessionStop()
-"    autocmd VimEnter *.keymaster set statusline=%<%f%<%{CurSessionTime()}%<%h%m%r%=%-20.(%3l:%02c%V:%L%)%h%m%r%=%-10(\#%n%Y%)%P
-"    map <F12> :windo :set diff! \| :set diff?
-"augroup END
