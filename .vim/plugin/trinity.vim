@@ -5,8 +5,8 @@
 " Abstract:       A (G)VIM plugin which build the trinity of Source Explorer,  
 "                 TagList and NERD tree to be an IDE for software development.
 " Author:         CHE Wenlong <chewenlong AT buaa.edu.cn>
-" Version:        1.1
-" Last Change:    August 28, 2008
+" Version:        1.3
+" Last Change:    December 28, 2008
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -115,7 +115,7 @@ let g:SrcExpl_winHeight = 8
 " // Set 100 ms for refreshing the Source Explorer
 let g:SrcExpl_refreshTime = 100
 " // Let the Source Explorer update the tags file when opening
-let g:SrcExpl_updateTags = 1
+let g:SrcExpl_isUpdateTags = 1
 " // Set "Enter" key to jump into the context of each definition
 let g:SrcExpl_jumpKey = "<ENTER>"
 " // Set "Space" key for back from the definition context
@@ -132,6 +132,8 @@ let g:SrcExpl_pluginList = [
 " // guaranteed to work, the Source Explorer does not check the syntax for now, 
 " // it only searches for a match with the keyword according to command 'gd'.
 let g:SrcExpl_searchLocalDef = 1
+
+let g:SrcExpl_updateTagsCmd = 'ctags -R *'
 
 endfunction " }}}
 
