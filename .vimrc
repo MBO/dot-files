@@ -140,7 +140,7 @@ endif
 " function to switch over favourite colorschemes
 function! <SID>SwitchPSCStyle(inc)
     if !exists("s:colo_tab")
-        let s:colo_tab = [ "evening", "ashen", "earthburn", "norwaytoday", "slate", "chlordane" ]
+        let s:colo_tab = [ "evening", "ashen", "earthburn", "norwaytoday", "slate", "chlordane", "lucius" ]
     endif
     if exists("s:colo_id")
         let s:colo_id = (s:colo_id + a:inc) % len(s:colo_tab)
