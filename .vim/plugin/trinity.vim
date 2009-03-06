@@ -5,8 +5,8 @@
 " Abstract:       A (G)VIM plugin which build the trinity of Source Explorer,  
 "                 TagList and NERD tree to be an IDE for software development.
 " Author:         CHE Wenlong <chewenlong AT buaa.edu.cn>
-" Version:        1.3
-" Last Change:    December 28, 2008
+" Version:        1.4
+" Last Change:    March 3, 2009
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -88,7 +88,7 @@ function! <SID>Trinity_InitTagList()
     " Split to the right side of the screen
     let g:Tlist_Use_Left_Window = 1
     " Set the window width
-    let g:Tlist_WinWidth = 24
+    let g:Tlist_WinWidth = 30
     " Sort by the order
     let g:Tlist_Sort_Type = "order"
     " Do not display the help info
@@ -110,30 +110,32 @@ endfunction " }}}
 
 function! <SID>Trinity_InitSourceExplorer()
 
-" // Set the window height of Source Explorer
-let g:SrcExpl_winHeight = 8
-" // Set 100 ms for refreshing the Source Explorer
-let g:SrcExpl_refreshTime = 100
-" // Let the Source Explorer update the tags file when opening
-let g:SrcExpl_isUpdateTags = 1
-" // Set "Enter" key to jump into the context of each definition
-let g:SrcExpl_jumpKey = "<ENTER>"
-" // Set "Space" key for back from the definition context
-let g:SrcExpl_gobackKey = "<SPACE>"
-" // In order to Avoid conflicts, the Source Explorer should know what plugins
-" // are using buffers. And you need add their bufname into the list below 
-" // according to the command ":buffers!"
-let g:SrcExpl_pluginList = [
-        \ "__Tag_List__", 
-        \ "_NERD_tree_", 
+    " // Set the height of Source Explorer window                                  "
+    let g:SrcExpl_winHeight = 8
+    " // Set 100 ms for refreshing the Source Explorer                             "
+    let g:SrcExpl_refreshTime = 100
+    " // Set "Enter" key to jump into the exact definition context                 "
+    let g:SrcExpl_jumpKey = "<ENTER>"
+    " // Set "Space" key for back from the definition context                      "
+    let g:SrcExpl_gobackKey = "<SPACE>"
+    " // In order to Avoid conflicts, the Source Explorer should know what plugins "
+    " // are using buffers. And you need add their bufname into the list below     "
+    " // according to the command ":buffers!"                                      "
+    let g:SrcExpl_pluginList = [
+        \ "__Tag_List__",
+        \ "_NERD_tree_",
         \ "Source_Explorer"
     \ ]
-" // Enable or disable local definition searching, and note that this is not 
-" // guaranteed to work, the Source Explorer does not check the syntax for now, 
-" // it only searches for a match with the keyword according to command 'gd'.
-let g:SrcExpl_searchLocalDef = 1
-
-let g:SrcExpl_updateTagsCmd = 'ctags -R *'
+    " // Enable/Disable the local definition searching, and note that this is not  "
+    " // guaranteed to work, the Source Explorer doesn't check the syntax for now. "
+    " // It only searches for a match with the keyword according to command 'gd'   "
+    let g:SrcExpl_searchLocalDef = 1
+    " // Let the Source Explorer update the tags file when opening                 "
+    let g:SrcExpl_isUpdateTags = 0
+    " // Use program 'ctags' with argument '-R' to create or update a tags file    "
+    let g:SrcExpl_updateTagsCmd = "ctags -R ."
+    " // Set "<F10>" key for updating the tags file artificially                   "
+    let g:SrcExpl_updateTagsKey = "<F10>"
 
 endfunction " }}}
 
@@ -144,7 +146,7 @@ endfunction " }}}
 function! <SID>Trinity_InitNERDTree()
 
     " Set the window width
-    let g:NERDTreeWinSize = 23
+    let g:NERDTreeWinSize = 30
     " Set the window position
     let g:NERDTreeWinPos = "right"
     " Auto centre
