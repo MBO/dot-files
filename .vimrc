@@ -84,6 +84,10 @@ set shiftwidth=4        " sw:  number of spaces for each indent
 set smarttab            " sta:  insert shiftwidth spaces in front of line
 set tabstop=4           " ts:  number of spaces that a Tab counts for
 
+" grap spell file from ftp://ftp.vim.org/pub/vim/runtime/spell
+set spelllang=en,pl
+"set spell
+
 "=============================================================================
 " Misc
 "-----------------------------------------------------------------------------
@@ -140,7 +144,7 @@ endif
 " function to switch over favourite colorschemes
 function! <SID>SwitchPSCStyle(inc)
     if !exists("s:colo_tab")
-        let s:colo_tab = [ "evening", "ashen", "earthburn", "norwaytoday", "slate", "chlordane", "lucius" ]
+        let s:colo_tab = [ "norwaytoday" ,"evening", "ashen", "earthburn", "slate", "chlordane", "lucius" ]
     endif
     if exists("s:colo_id")
         let s:colo_id = (s:colo_id + a:inc) % len(s:colo_tab)
@@ -294,7 +298,9 @@ let ruby_operators=1
 let ruby_fold=1
 let ruby_space_errors=1
 
+
 " TEX
 let tex_fold_enabled=1
 let tex_comment_nospell=1
+let g:tex_indent_items=1
 
