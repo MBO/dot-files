@@ -24,8 +24,10 @@ set undolevels=1000     " ul:  lots of undo
 "=============================================================================
 " Folds
 "=============================================================================
-set foldmethod=syntax   " fdm:  syntax highlighting items specify folds
+set foldmethod=indent   " fdm:  lines with equal indent form a fold
 set foldcolumn=4        " fdc:  shows folds at the side of the window
+set foldlevel=1000      " fdl:  fold level
+set foldlevelstart=1000 " fdls:  fold level start
 set nofoldenable        " nofen:  open all folds on start
 
 "=============================================================================
@@ -144,7 +146,7 @@ endif
 " function to switch over favourite colorschemes
 function! <SID>SwitchPSCStyle(inc)
     if !exists("s:colo_tab")
-        let s:colo_tab = [ "norwaytoday" ,"evening", "ashen", "earthburn", "slate", "chlordane", "lucius" ]
+        let s:colo_tab = [ "vividchalk", "norwaytoday" ,"evening", "ashen", "slate" ]
     endif
     if exists("s:colo_id")
         let s:colo_id = (s:colo_id + a:inc) % len(s:colo_tab)
@@ -188,7 +190,6 @@ endif
 " NERD tree
 " NERD commenter
 " Perl IDE
-" JDE
 " Source Explorrer
 " Calendar
 " Gist
@@ -212,9 +213,10 @@ endif
 
 " Tip 964
 " Copy/Paste keybindings
-map <F7> gg"*yG <C-o> <C-o>
+map  <F7> gg"*yG <C-o> <C-o>
 vmap <F7> "*y
-map <S-F7> "*p
+imap <S-F7> <C-o>"*p
+map  <S-F7> "*p
 set pastetoggle=<F8>   " pt:  key used to toggle :past
 
 " Tip 920
