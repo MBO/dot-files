@@ -234,7 +234,6 @@ MapToggle <F3> list
 "nnoremap <CR> :set nohlsearch \| set hlsearch?<CR>
 
 map <F5> :e!<CR>
-map <M-R> :e!<CR>
 
 map <F6> :split<CR>
 map <S-F6> :vsplit<CR>
