@@ -137,7 +137,8 @@ if has("gui_running")
 
     set guioptions+=a   " go: a - autoselect
     set guioptions+=c   " go: c - use consle dialogs
-    set guioptions+=f   " go: f - don't detach the gui from the shell
+    "set guioptions+=f   " go: f - don't detach the gui from the shell
+    set guioptions-=T   " go: T - don't include toolbar
 endif
 
 "=============================================================================
