@@ -4,7 +4,6 @@
 " 
 " Installation:
 "      History: pluginized by Srinath Avadhanula
-"               ( srinath@fastmail.fm)
 "=============================================================================
 
 if exists('s:doneOnce')
@@ -205,9 +204,11 @@ endfunction "}}}
 " Add looking help into latexhelp.txt
 " ============================================================================== 
 
-inoremap <buffer> <silent> <F1> <C-O>:call <SID>TexHelp()<CR>
-nnoremap <buffer> <silent> <F1> :call <SID>TexHelp()<CR>
+inoremap <silent> <Plug>Tex_Help <C-o>:call <SID>TexHelp()<CR>
+nnoremap <silent> <Plug>Tex_Help :call <SID>TexHelp()<CR>
 command! -nargs=0 THelp call <SID>TexHelp()
+call Tex_MakeMap('<F1>', '<Plug>Tex_Help', 'i', '')
+call Tex_MakeMap('<F1>', '<Plug>Tex_Help', 'n', '')
 
 " TexHelp: Cursor being on LaTeX item check if exists help tag about it " {{{
 function! s:TexHelp()
@@ -278,8 +279,7 @@ let g:generalshortcuts = ''
 \."\n <mapleader> is a value of <Leader>"
 \."\n ".s:mapleader.'ll	compile whole document'
 \."\n ".s:mapleader.'lv	view compiled document'
-\."\n ".s:mapleader.'lp	view last compiled part of document'
-\."\n ".s:mapleader.'ls	make forward searching if possible'
+\."\n ".s:mapleader.'ls	forward searching (if possible)'
 \."\n ".s:mapleader.'rf	refresh folds'
 " }}}
 " Environment shortcuts {{{

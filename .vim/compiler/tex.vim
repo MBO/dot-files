@@ -2,7 +2,7 @@
 "            Type: compiler plugin for LaTeX
 " Original Author: Artem Chuprina <ran@ran.pp.ru>
 "   Customization: Srinath Avadhanula <srinath@fastmail.fm>
-"             CVS: $Id: tex.vim,v 1.6 2003/07/24 02:52:35 srinathava Exp $
+"             CVS: $Id: tex.vim 997 2006-03-20 09:45:45Z srinathava $
 " Description:  {{{
 "   This file sets the 'makeprg' and 'errorformat' options for the LaTeX
 "   compiler. It is customizable to optionally ignore certain warnings and
@@ -208,6 +208,7 @@ function! <SID>SetLatexEfm()
 	setlocal efm+=%+WLaTeX\ %.%#Warning:\ %m
 
 	exec 'setlocal efm+=%'.pm.'Cl.%l\ %m'
+	exec 'setlocal efm+=%'.pm.'Cl.%l\ '
 	exec 'setlocal efm+=%'.pm.'C\ \ %m'
 	exec 'setlocal efm+=%'.pm.'C%.%#-%.%#'
 	exec 'setlocal efm+=%'.pm.'C%.%#[]%.%#'
@@ -281,5 +282,12 @@ com! -nargs=? TCLevel :call <SID>SetTexCompilerLevel(<f-args>)
 " ==============================================================================
 
 call s:SetLatexEfm()
+
+if !exists('*Tex_Debug')
+	function! Tex_Debug(...)
+	endfunction
+endif
+
+call Tex_Debug("compiler/tex.vim: sourcing this file", "comp")
 
 " vim: fdm=marker:commentstring=\ \"\ %s
