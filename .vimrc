@@ -56,7 +56,8 @@ set ruler               " ru:  show the cursor position all the time
 set shortmess=aIoO      " shm:  really short messages, don't show intro
 set showcmd             " sc:  show command in the last line of the screen
 set showmode            " smd:  show the current input mode
-"set statusline=%([%-n]%y\ %f%M%R%)\ %=\ %(%l,%c%V\ %P\ [0x%02.2B]%)
+"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P  "this is default with ruler
+set statusline=%([%-n]%y\ %f%M%R%)\ %=\ %(%l,%c%V\ %P\ [0x%02.2B]%)
 "set statusline=[%n]\ %{ModifiedFlag()}%f\ %=%h%r%w\ (%v,%l)\ %P\
 
 "=============================================================================
