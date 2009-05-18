@@ -91,7 +91,7 @@ setprompt () {
     fi  
 
     PROMPT=$'\n${PR_USER} %F{blue}%~%f\n%F{magenta}%*%f ${PR_USER_OP} '
-    #RPROMPT="[$(git_info_for_prompt)]"
+    RPROMPT='%F{red}[%B%F{yellow}$(git_info_for_prompt)%f%b%F{red}]%f'
 }
 
 setprompt
