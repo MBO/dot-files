@@ -17,59 +17,16 @@ case $TERM in
     ;; 
 esac
 
-function git_info_for_prompt {
-local g="$(git rev-parse --git-dir 2>/dev/null)"
-if [ -n "$g" ]; then
-    local r
-    local b
-    if [ -d "$g/../.dotest" ]
-    then
-        if test -f "$g/../.dotest/rebasing"
-        then
-            r="|REBASE"
-        elif test -f "$g/../.dotest/applying"
-        then
-            r="|AM"
-        else
-            r="|AM/REBASE"
-        fi
-        b="$(git symbolic-ref HEAD 2>/dev/null)"
-    elif [ -f "$g/.dotest-merge/interactive" ]
-    then
-        r="|REBASE-i"
-        b="$(cat "$g/.dotest-merge/head-name")"
-    elif [ -d "$g/.dotest-merge" ]
-    then
-        r="|REBASE-m"
-        b="$(cat "$g/.dotest-merge/head-name")"
-    elif [ -f "$g/MERGE_HEAD" ]
-    then
-        r="|MERGING"
-        b="$(git symbolic-ref HEAD 2>/dev/null)"
-    else
-        if [ -f "$g/BISECT_LOG" ]
-        then
-            r="|BISECTING"
-        fi
-        if ! b="$(git symbolic-ref HEAD 2>/dev/null)"
-        then
-            if ! b="tag: $(git describe --exact-match HEAD 2>/dev/null)"
-            then
-                b="$(cut -c1-7 "$g/HEAD")..."
-            fi
-        fi
-    fi
+precmd() {
+    psvar=()
 
-    if [ -n "$1" ]; then
-        printf "$1" "${b##refs/heads/}$r"
-    else
-        printf "%s" "${b##refs/heads/}$r"
-    fi
-fi
+    vcs_info
+    [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"
 }
 
 setprompt () {
     # load some modules
+    autoload -Uz vcs_info
     autoload -U colors zsh/terminfo # Used in the colour alias below
     colors
     setopt prompt_subst
@@ -90,8 +47,9 @@ setprompt () {
         eval PR_USER_OP='%F{red}%#%f'
     fi  
 
+    vcs_info
     PROMPT=$'\n${PR_USER} %F{blue}%~%f\n%F{magenta}%*%f ${PR_USER_OP} '
-    RPROMPT='%F{red}[%B%F{yellow}$(git_info_for_prompt)%f%b%F{red}]%f'
+    RPROMPT='%B%F{blue}%1v%f%b'
 }
 
 setprompt
