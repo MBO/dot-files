@@ -39,8 +39,8 @@ export LOCALE=en_US.UTF-8
 
 export BROWSER=opera
 
-export EDITOR=gvim
-export VISUAL=gvim
+export EDITOR="gvim -f"
+export VISUAL="gvim -f"
 
 watch=(notme)
 LOGCHECK=300
