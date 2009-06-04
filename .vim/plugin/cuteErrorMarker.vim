@@ -63,7 +63,7 @@ fun! s:ExOutput(txt) "{{{
 endfunction "}}}
 
 fun! s:SelectClass( error ) "{{{
-    if a:error =~ 'warning'
+    if a:error =~ '\cwarning'
         return 'warnhere'
     else
         return 'errhere'
@@ -76,7 +76,7 @@ fun! MarkErrors() "{{{
 
     for error in errList
         if error !~ "^\s*[\"']*\s*$" 
-            let filename = substitute( error, '^\s*\d\+\s\+\([a-zA-Z0-9._]*\).*', '\1', 'e' )
+            let filename = substitute( error, '^\s*\d\+\s\+\(\([a-zA-Z0-9._]\+[\\/]\)*[a-zA-Z0-9._]\+\).*', '\1', 'e' )
             let matchedBuf = bufnr( filename )
 
             if matchedBuf >= 0
