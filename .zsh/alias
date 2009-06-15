@@ -18,6 +18,8 @@ alias s='screen -DR'
 
 alias rmf='rm -rf'
 
+alias guu='gem update --system && gem update'
+
 alias -g M='2>&1 | less -S'
 alias -g C='| wc -l'
 alias -g S='| sort'
