@@ -45,6 +45,21 @@ function gc() { git commit -m "$*" }
 function gca() { git commit -am "$*" }
 function gpl() { git pull $* }
 
+function hack() {
+    current=`git branch | awk '/\*/ { print $2 }'`
+    git fetch origin
+    git rebase origin/master
+}
+function ship() {
+    current=`git branch | awk '/\*/ { print $2 }'`
+    git checkout master
+    git merge origin # should be fast forward
+    git merge $current
+    git push origin master
+    git checkout $current
+}
+function ssp() { hack && rake && ship }
+
 extract_archive () {
     local old_dirs current_dirs lower
     lower=${(L)1}
@@ -84,7 +99,7 @@ roll () {
     FILE=$1
     shift
     case $FILE in
-        *.tar.bz2|*.tbz|*.tar.gz|*.tgz|*.tar.lzma|*.tlz) tar caf "$FILE" $* ;;
+        *.tar.bz2|*.tbz|*.tar.gz|*.tgz|*.tar.lzma|*.tlz) tar cavf "$FILE" $* ;;
         *.gz) gzip "$FILE" $* ;;
         *.zip) zip -r "$FILE" $* ;;
         *.rar) rar "$FILE" $* ;;
