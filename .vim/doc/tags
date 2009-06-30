@@ -100,6 +100,10 @@
 :TlistUndebug	taglist.txt	/*:TlistUndebug*
 :TlistUnlock	taglist.txt	/*:TlistUnlock*
 :TlistUpdate	taglist.txt	/*:TlistUpdate*
+:Todo	CuteTodoList.txt	/*:Todo*
+:TodoClose	CuteTodoList.txt	/*:TodoClose*
+:TodoOpen	CuteTodoList.txt	/*:TodoOpen*
+:Todog	CuteTodoList.txt	/*:Todog*
 :VCSAdd	vcscommand.txt	/*:VCSAdd*
 :VCSAnnotate	vcscommand.txt	/*:VCSAnnotate*
 :VCSBlame	vcscommand.txt	/*:VCSBlame*
@@ -117,6 +121,7 @@
 :VCSUnlock	vcscommand.txt	/*:VCSUnlock*
 :VCSUpdate	vcscommand.txt	/*:VCSUpdate*
 :VCSVimDiff	vcscommand.txt	/*:VCSVimDiff*
+<S-D>	CuteTodoList.txt	/*<S-D>*
 AND	dbext.txt	/*AND*
 Alph	latexhelp.txt	/*Alph*
 Alt-B	latex-suite.txt	/*Alt-B*
@@ -124,6 +129,7 @@ Alt-C	latex-suite.txt	/*Alt-C*
 Alt-I	latex-suite.txt	/*Alt-I*
 Alt-L	latex-suite.txt	/*Alt-L*
 BibTeX	latexhelp.txt	/*BibTeX*
+CuteTodoList.txt	CuteTodoList.txt	/*CuteTodoList.txt*
 DBI	dbext.txt	/*DBI*
 IMAP_PutTextWithMovement	latex-suite.txt	/*IMAP_PutTextWithMovement*
 Imap_DeleteEmptyPlaceHolders	latex-suite.txt	/*Imap_DeleteEmptyPlaceHolders*
@@ -301,6 +307,10 @@ Tlist_Get_Tag_Prototype_By_Line()	taglist.txt	/*Tlist_Get_Tag_Prototype_By_Line(
 Tlist_Get_Tagname_By_Line()	taglist.txt	/*Tlist_Get_Tagname_By_Line()*
 Tlist_Set_App()	taglist.txt	/*Tlist_Set_App()*
 Tlist_Update_File_Tags()	taglist.txt	/*Tlist_Update_File_Tags()*
+Todo	CuteTodoList.txt	/*Todo*
+TodoClose	CuteTodoList.txt	/*TodoClose*
+TodoOpen	CuteTodoList.txt	/*TodoOpen*
+Todog	CuteTodoList.txt	/*Todog*
 Tshortcuts	latex-suite.txt	/*Tshortcuts*
 VCSCommandCVSDiffOpt	vcscommand.txt	/*VCSCommandCVSDiffOpt*
 VCSCommandCVSExec	vcscommand.txt	/*VCSCommandCVSExec*
@@ -618,6 +628,10 @@ customizing-place-holders	latex-suite.txt	/*customizing-place-holders*
 customizing-smart-keys	latex-suite.txt	/*customizing-smart-keys*
 customizing-viewing	latex-suite.txt	/*customizing-viewing*
 customizing-what-to-fold	latex-suite.txt	/*customizing-what-to-fold*
+cuteBufferUsage	CuteTodoList.txt	/*cuteBufferUsage*
+cuteTodoCommands	CuteTodoList.txt	/*cuteTodoCommands*
+cuteTodoConfiguration	CuteTodoList.txt	/*cuteTodoConfiguration*
+cuteTodoList	CuteTodoList.txt	/*cuteTodoList*
 cvscommand-changes	vcscommand.txt	/*cvscommand-changes*
 database-extension	dbext.txt	/*database-extension*
 db2	dbext.txt	/*db2*
@@ -729,6 +743,10 @@ g:rails_statusline	rails.txt	/*g:rails_statusline*
 g:rails_syntax	rails.txt	/*g:rails_syntax*
 g:rails_tabstop	rails.txt	/*g:rails_tabstop*
 g:rails_url	rails.txt	/*g:rails_url*
+g:todo_generate_auto	CuteTodoList.txt	/*g:todo_generate_auto*
+g:todo_list_buff_name	CuteTodoList.txt	/*g:todo_list_buff_name*
+g:todo_list_filename	CuteTodoList.txt	/*g:todo_list_filename*
+g:todo_list_globfilename	CuteTodoList.txt	/*g:todo_list_globfilename*
 global-example	yankring.txt	/*global-example*
 greek-letter-mappings	latex-suite.txt	/*greek-letter-mappings*
 headings	latexhelp.txt	/*headings*
@@ -1306,7 +1324,7 @@ perlsupport-run-debug	perlsupport.txt	/*perlsupport-run-debug*
 perlsupport-run-script	perlsupport.txt	/*perlsupport-run-script*
 perlsupport-settings	perlsupport.txt	/*perlsupport-settings*
 perlsupport-smallprof	perlsupport.txt	/*perlsupport-smallprof*
-perlsupport-snippets	perlsupport.txt	/*perlsupport-snippets*
+perlsupport-snippets-menu	perlsupport.txt	/*perlsupport-snippets-menu*
 perlsupport-specvar	perlsupport.txt	/*perlsupport-specvar*
 perlsupport-stat-norm-ins	perlsupport.txt	/*perlsupport-stat-norm-ins*
 perlsupport-stat-visual	perlsupport.txt	/*perlsupport-stat-visual*
@@ -1321,6 +1339,7 @@ perlsupport-templates-expansion	perlsupport.txt	/*perlsupport-templates-expansio
 perlsupport-templates-files	perlsupport.txt	/*perlsupport-templates-files*
 perlsupport-templates-jump	perlsupport.txt	/*perlsupport-templates-jump*
 perlsupport-templates-macros	perlsupport.txt	/*perlsupport-templates-macros*
+perlsupport-templates-menu	perlsupport.txt	/*perlsupport-templates-menu*
 perlsupport-templates-names	perlsupport.txt	/*perlsupport-templates-names*
 perlsupport-templates-sets	perlsupport.txt	/*perlsupport-templates-sets*
 perlsupport-timestamp	perlsupport.txt	/*perlsupport-timestamp*
@@ -1553,6 +1572,18 @@ textformat-start	textformat.txt	/*textformat-start*
 textformat.txt	textformat.txt	/*textformat.txt*
 theorem	latexhelp.txt	/*theorem*
 titlepage	latexhelp.txt	/*titlepage*
+todo_+	CuteTodoList.txt	/*todo_+*
+todo_-	CuteTodoList.txt	/*todo_-*
+todo_^	CuteTodoList.txt	/*todo_^*
+todo_generate_auto	CuteTodoList.txt	/*todo_generate_auto*
+todo_list_buff_name	CuteTodoList.txt	/*todo_list_buff_name*
+todo_list_filename	CuteTodoList.txt	/*todo_list_filename*
+todo_list_globfilename	CuteTodoList.txt	/*todo_list_globfilename*
+todo_m	CuteTodoList.txt	/*todo_m*
+todo_o	CuteTodoList.txt	/*todo_o*
+todo_s	CuteTodoList.txt	/*todo_s*
+todo_u	CuteTodoList.txt	/*todo_u*
+todo_v	CuteTodoList.txt	/*todo_v*
 twocolumn	latexhelp.txt	/*twocolumn*
 twoside	latexhelp.txt	/*twoside*
 vcscommand	vcscommand.txt	/*vcscommand*
