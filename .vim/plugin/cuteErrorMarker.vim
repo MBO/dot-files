@@ -2,9 +2,12 @@
 " What Is This: Display marks at lines with compilation error.
 " File: cuteErrorMarker.vim
 " Author: Vincent Berthoux <twinside@gmail.com>
-" Last Change: 2009 mai 23
-" Version: 1.0
+" Last Change: 2009 june 28
+" Version: 1.3
 " Thanks:
+" Require:
+"   set nocompatible
+"     somewhere on your .vimrc
 " Usage:
 "      :MarkErrors
 "        Place markers near line from the error list
@@ -16,21 +19,77 @@
 "      :make
 "        Place marker automatically by default
 " ChangeLog:
+"     * 1.3 :- Taking into account "Documents and Settings" folder...
+"            - Adding icons source from $VIM or $VIMRUNTIME
+"            - Checking the nocompatible option (the only one required)
+"     * 1.2 :- Fixed problems with subdirectory
+"            - Warning detection is now case insensitive
+"     * 1.1 :- Bug fix when make returned only an error
+"            - reduced flickering by avoiding redraw when not needed.
+"     * 1.0 : Original version
 " Additional:
 "     * if you don't want the automatic placing of markers
 "       after a make, you can define :
 "       let g:cuteerrors_no_autoload = 1
 "
-let s:signId = 33000
-let s:signCount = 0
+if exists("g:__CUTEERRORMARKER_VIM__")
+    finish
+endif
+let g:__CUTEERRORMARKER_VIM__ = 1
+
+"======================================================================
+"           Configuration checking
+"======================================================================
+if &compatible
+    echom 'Cute Error Marker require the nocompatible option, loading aborted'
+    echom "To fix it add 'set nocompatible' in your .vimrc file"
+    finish
+endif
+
+fun! s:GetInstallPath(of) "{{{
+    " If the plugin in installed in the vim runtime directory
+    if filereadable( expand( '$VIMRUNTIME' ) . a:of )
+        return expand( '$VIMRUNTIME' )
+    endif
+
+    " If the plugin in installed in the vim directory
+    if filereadable( expand( '$VIM' ) . a:of )
+        return expand( '$VIM' )
+    endif
+
+    if has("win32")
+        let vimprofile = 'vimfiles'
+    else
+        let vimprofile = '.vim'
+    endif
+
+    " else in the profile directory
+    if filereadable( expand( '~/' . vimprofile ) . a:of )
+        return expand('~/' . vimprofile )
+    endif
+
+    return ''
+endfunction "}}}
 
 if has("win32")
-    let s:path = expand("~/vimfiles/signs/")
     let s:ext = '.ico'
 else
-    let s:path = expand("~/.vim/signs/")
     let s:ext = '.png'
 endif
+
+let s:path = escape( s:GetInstallPath( '/signs/err' . s:ext ), ' \' )
+if s:path == ''
+    echom "Cute Error Marker can't find icons, plugin not loaded" 
+    finish
+else
+    let s:path = s:path . '/signs/'
+endif
+
+"======================================================================
+"           Plugin data
+"======================================================================
+let s:signId = 33000
+let s:signCount = 0
 
 exec 'sign define errhere text=[X icon=' . s:path . 'err' . s:ext
 exec 'sign define warnhere text=/! icon=' . s:path . 'warn' . s:ext
