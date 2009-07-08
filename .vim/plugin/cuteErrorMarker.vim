@@ -19,18 +19,24 @@
 "      :make
 "        Place marker automatically by default
 " ChangeLog:
-"     * 1.3 :- Taking into account "Documents and Settings" folder...
-"            - Adding icons source from $VIM or $VIMRUNTIME
-"            - Checking the nocompatible option (the only one required)
-"     * 1.2 :- Fixed problems with subdirectory
-"            - Warning detection is now case insensitive
-"     * 1.1 :- Bug fix when make returned only an error
-"            - reduced flickering by avoiding redraw when not needed.
-"     * 1.0 : Original version
+"     * 1.3.1:- Changed data retrievel function to getqflist().
+"     * 1.3  :- Taking into account "Documents and Settings" folder...
+"             - Adding icons source from $VIM or $VIMRUNTIME
+"             - Checking the nocompatible option (the only one required)
+"     * 1.2  :- Fixed problems with subdirectory
+"             - Warning detection is now case insensitive
+"     * 1.1  :- Bug fix when make returned only an error
+"             - reduced flickering by avoiding redraw when not needed.
+"     * 1.0  : Original version
 " Additional:
 "     * if you don't want the automatic placing of markers
 "       after a make, you can define :
 "       let g:cuteerrors_no_autoload = 1
+" Thanks:
+"       - Benoît Pierre for pointing the function getqflist() and
+"         providing a patch.
+"       - Yazilim Duzenleci for stressing the plugin and forcing
+"         me to make it more general.
 "
 if exists("g:__CUTEERRORMARKER_VIM__")
     finish
@@ -108,19 +114,6 @@ fun! RemoveErrorMarkersHook() "{{{
     augroup END
 endfunction "}}}
 
-" compute the output of an Ex command
-fun! s:ExOutput(txt) "{{{
-    let tempz = getreg( 'z' )
-    redir @z
-    exec a:txt
-    redir END
-
-    let toRet = string(getreg( 'z' ))
-    call setreg( 'z', tempz )
-
-    return toRet
-endfunction "}}}
-
 fun! s:SelectClass( error ) "{{{
     if a:error =~ '\cwarning'
         return 'warnhere'
@@ -130,21 +123,19 @@ fun! s:SelectClass( error ) "{{{
 endfunction "}}}
 
 fun! MarkErrors() "{{{
-    let errText = s:ExOutput("silent clist")
-    let errList = split( errText, '\n')
+    let errList = getqflist()
 
     for error in errList
-        if error !~ "^\s*[\"']*\s*$" 
-            let filename = substitute( error, '^\s*\d\+\s\+\(\([a-zA-Z0-9._]\+[\\/]\)*[a-zA-Z0-9._]\+\).*', '\1', 'e' )
-            let matchedBuf = bufnr( filename )
+        if error.valid
+            let matchedBuf = error.bufnr
 
             if matchedBuf >= 0
                 let s:signCount = s:signCount + 1
                 let id = s:signId + s:signCount
-                let errClass = s:SelectClass( error )
-                let errLn = substitute( error, '^[^:]*:\(\d\+\).*', '\1', 'e')
+                let errClass = s:SelectClass( error.text )
+
                 let toPlace = 'sign place ' . id
-                            \ . ' line=' . errLn
+                            \ . ' line=' . error.lnum
                             \ . ' name=' . errClass
                             \ . ' buffer=' . matchedBuf
                 exec toPlace
