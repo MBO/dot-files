@@ -19,6 +19,7 @@
 "      :make
 "        Place marker automatically by default
 " ChangeLog:
+"     * 1.3.2:- Changed loading of files using globpath()
 "     * 1.3.1:- Changed data retrievel function to getqflist().
 "     * 1.3  :- Taking into account "Documents and Settings" folder...
 "             - Adding icons source from $VIM or $VIMRUNTIME
@@ -33,6 +34,7 @@
 "       after a make, you can define :
 "       let g:cuteerrors_no_autoload = 1
 " Thanks:
+"       - A. S. Budden for the globpath function
 "       - Benoît Pierre for pointing the function getqflist() and
 "         providing a patch.
 "       - Yazilim Duzenleci for stressing the plugin and forcing
@@ -52,43 +54,16 @@ if &compatible
     finish
 endif
 
-fun! s:GetInstallPath(of) "{{{
-    " If the plugin in installed in the vim runtime directory
-    if filereadable( expand( '$VIMRUNTIME' ) . a:of )
-        return expand( '$VIMRUNTIME' )
-    endif
-
-    " If the plugin in installed in the vim directory
-    if filereadable( expand( '$VIM' ) . a:of )
-        return expand( '$VIM' )
-    endif
-
-    if has("win32")
-        let vimprofile = 'vimfiles'
-    else
-        let vimprofile = '.vim'
-    endif
-
-    " else in the profile directory
-    if filereadable( expand( '~/' . vimprofile ) . a:of )
-        return expand('~/' . vimprofile )
-    endif
-
-    return ''
-endfunction "}}}
-
 if has("win32")
     let s:ext = '.ico'
 else
     let s:ext = '.png'
 endif
 
-let s:path = escape( s:GetInstallPath( '/signs/err' . s:ext ), ' \' )
+let s:path = globpath( &rtp, 'signs/err' . s:ext )
 if s:path == ''
     echom "Cute Error Marker can't find icons, plugin not loaded" 
     finish
-else
-    let s:path = s:path . '/signs/'
 endif
 
 "======================================================================
@@ -97,8 +72,8 @@ endif
 let s:signId = 33000
 let s:signCount = 0
 
-exec 'sign define errhere text=[X icon=' . s:path . 'err' . s:ext
-exec 'sign define warnhere text=/! icon=' . s:path . 'warn' . s:ext
+exec 'sign define errhere text=[X icon=' . escape( globpath( &rtp, 'signs/err' . s:ext ), ' \' )
+exec 'sign define warnhere text=/! icon=' . escape( globpath( &rtp, 'signs/warn' . s:ext ), ' \' )
 
 fun! PlaceErrorMarkersHook() "{{{
     augroup cuteerrors
