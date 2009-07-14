@@ -6,10 +6,11 @@
 " Version: 1.1
 "
 " ChangeLog:
-"     * 1.1 :- Taking into account "Documents and Settings" folder...
-"            - Adding icons source from $VIM or $VIMRUNTIME
-"            - Checking the nocompatible option (the only one required)
-"     * 1.0 : Original version
+"     * 1.1.1:- Changed loading of files using globpath()
+"     * 1.1  :- Taking into account "Documents and Settings" folder...
+"             - Adding icons source from $VIM or $VIMRUNTIME
+"             - Checking the nocompatible option (the only one required)
+"     * 1.0  :- Original version
 if exists("g:__CUTETODO_VIM__")
     finish
 endif
@@ -24,44 +25,18 @@ if &compatible
     finish
 endif
 
-fun! s:GetInstallPath(of) "{{{
-    " If the plugin in installed in the vim runtime directory
-    if filereadable( expand( '$VIMRUNTIME' ) . a:of )
-        return expand( '$VIMRUNTIME' )
-    endif
-
-    " If the plugin in installed in the vim directory
-    if filereadable( expand( '$VIM' ) . a:of )
-        return expand( '$VIM' )
-    endif
-
-    if has("win32")
-        let vimprofile = 'vimfiles'
-    else
-        let vimprofile = '.vim'
-    endif
-
-    " else in the profile directory
-    if filereadable( expand( '~/' . vimprofile ) . a:of )
-        return expand('~/' . vimprofile )
-    endif
-
-    return ''
-endfunction "}}}
-
 if has("win32")
     let s:ext = '.ico'
 else
     let s:ext = '.png'
 endif
 
-let s:path = escape( s:GetInstallPath( '/signs/priol1' . s:ext ), ' \' )
+let s:path = globpath( &rtp, '/signs/priol1' . s:ext )
 if s:path == ''
     echom "Cute Todo list can't find icons, plugin not loaded."
     finish
-else
-    let s:path = s:path . '/signs/'
 endif
+
 "======================================================================
 "           General Options
 "======================================================================
@@ -81,14 +56,19 @@ if !exists("g:todo_list_globfilename")
     let g:todo_list_globfilename = '.global.todo.txt'
 endif
 
+if !exists("g:todo_global_path")
+    let g:todo_global_path = expand('~') . '/'
+elseif g:todo_global_path =~ '[/\\]$'
+    let g:todo_global_path = substitute( g:todo_global_path, '[/\\]\+$', '', '')
+endif
+
 "======================================================================
 "           Plugin data
 "======================================================================
 " The todo list is stored with the following type (haskell
 " notation) :
 " DisplayName, Filename, Text :: String
-" Priority :: Int
-" SortKind :: Int
+" Priority, SortKind :: Int
 " s:todo_list :: [(DisplayName, Filename, SortKind, [(Priority, Text)])]
 " But as viml doesn't provide tuples, they are implemented
 " as lists.
@@ -106,10 +86,10 @@ let s:todoMaxPrio = 4
 let s:default_priority = 2
 let s:defaultSortKind = 0
 
-exec 'sign define todopriop2 text=!! icon=' . s:path . 'priop2' . s:ext
-exec 'sign define todopriop1 text=!1 icon=' . s:path . 'priop1' . s:ext
-exec 'sign define todopriol1 text=_1 icon=' . s:path . 'priol1' . s:ext
-exec 'sign define todopriol2 text=__ icon=' . s:path . 'priol2' . s:ext
+exec 'sign define todopriop2 text=!! icon=' . escape( globpath( &rtp, 'signs/priop2' . s:ext ), ' \' )
+exec 'sign define todopriop1 text=!1 icon=' . escape( globpath( &rtp, 'signs/priop1' . s:ext ), ' \' )
+exec 'sign define todopriol1 text=_1 icon=' . escape( globpath( &rtp, 'signs/priol1' . s:ext ), ' \' )
+exec 'sign define todopriol2 text=__ icon=' . escape( globpath( &rtp, 'signs/priol2' . s:ext ), ' \' )
 
 let s:todo_inner_help_appeal = ['" Press <F1> for help'
                               \,' '
@@ -135,7 +115,12 @@ fun! s:TodoRedraw( editLine ) "{{{
     " Remove everything
     setl modifiable
     call s:TodoRemoveSign()
+
+    " avoid overwriting user's buffers
+    let tempz = getreg( 'z' )
     normal ggVG"zd
+    call setreg( 'z', tempz )
+
     " re-render
     call s:TodoWriteFile( s:todo_list )
     " Goto previous line in previous buffer...
@@ -263,8 +248,11 @@ fun! s:TodoWriteFile( todol ) "{{{
         let i = i + 1
     endfor
 
-    " Remove last two lines
+    " Remove last two lines, and avoid overwritin
+    " user's registers
+    let tempz = getreg( 'z' )
     normal G"zdd"zdd
+    call setreg( 'z', tempz )
     " Open all the folds
     normal zR
     setlocal nomodifiable
@@ -303,7 +291,9 @@ fun! s:TodoGatherInFiles() "{{{
     " getting a feedback loop and getting todos
     " from the todo window...
     setlocal modifiable
+    let tempz = getreg( 'z' )
     normal ggVG"zd
+    call setreg( 'z', tempz )
 
     let s:spareTodos = []
     " Big regexp to catch TODO and avoid it in words
@@ -600,7 +590,7 @@ endfunction "}}}
 
 fun! s:TodoLoadFiles() "{{{
     let currDir = expand( '$PWD' )
-    let globDir = expand( '$HOME' )
+    let globDir = g:todo_global_path
 
     let s:todo_list = [ LoadTodoFile( 'Global', globDir . '/' . g:todo_list_globfilename )
                     \ , LoadTodoFile( 'Local', g:todo_list_filename )
