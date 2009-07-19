@@ -1,1 +1,0 @@
-/usr/share/vim-scripts/colors/asu1dark.vim

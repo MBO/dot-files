@@ -1,1 +1,0 @@
-/usr/share/vim-scripts/colors/print_bw.vim
