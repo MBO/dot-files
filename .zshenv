@@ -1,4 +1,4 @@
-#!/bin/zhs
+#!/bin/zsh
 
 # Dircolors...
 eval `dircolors -b`
@@ -29,6 +29,9 @@ export GROOVY_HOME=~/Java/groovy
 export GRAILS_HOME=~/Java/grails
 export GRIFFON_HOME=~/Java/griffon
 export PATH=$GROOVY_HOME/bin:$GRAILS_HOME/bin:$GRIFFON_HOME/bin:$PATH
+
+export SCALA_HOME=~/Java/scala
+export PATH=$SCALA_HOME/bin:$PATH
 
 export LD_LIBRARY_PATH=$HOME/lib
 

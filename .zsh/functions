@@ -119,7 +119,12 @@ unroll () {
     esac
 }
 
-function mkcd() { mkdir -p "$1" && cd "$1"; }
+function mkcd() {
+    mkdir -p "$1" && cd "$1";
+}
+function mkcdtmp() {
+    mkdir -p "$1" && cd "$1" && $SHELL && cd - && rm -rf "$1";
+}
 function hex2dec { awk 'BEGIN { printf "%d\n",0x$1}'; }
 function dec2hex { awk 'BEGIN { printf "%x\n",$1}'; }
 
