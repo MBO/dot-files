@@ -23,17 +23,17 @@
 
 # reload zshrc
 function src() {
-autoload -U zrecompile
-[[ -f ~/.zshrc ]] && zrecompile -p ~/.zshrc
-for i in "$(find ~/.zsh/ -type f)"; do
-    [[ -f $i ]] && zrecompile -p $i
-    [[ -f $i.zwc.old ]] && rm -f $i.zwc.old
-done
-[[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
-[[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
-[[ -f ~/.zshrc.zwc.old ]] && rm -f ~/.zshrc.zwc.old
-[[ -f ~/.zcompdump.zwc.old ]] && rm -f ~/.zcompdump.zwc.old
-source ~/.zshrc
+    autoload -U zrecompile
+    [[ -f ~/.zshrc ]] && zrecompile -p ~/.zshrc
+    for i in "$(find ~/.zsh/ -type f)"; do
+        [[ -f $i ]] && zrecompile -p $i
+        [[ -f $i.zwc.old ]] && rm -f $i.zwc.old
+    done
+    [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
+    [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
+    [[ -f ~/.zshrc.zwc.old ]] && rm -f ~/.zshrc.zwc.old
+    [[ -f ~/.zcompdump.zwc.old ]] && rm -f ~/.zcompdump.zwc.old
+    source ~/.zshrc
 }
 
 # git functions
@@ -46,17 +46,21 @@ function gca() { git commit -am "$*" }
 function gpl() { git pull $* }
 
 function hack() {
-    current=`git branch | awk '/\*/ { print $2 }'`
-    git fetch origin
-    git rebase origin/master
+    set -x
+
+    current=`git branch | awk '/\*/ { print $2 }'` && \
+        git fetch origin && \
+        git rebase origin/master
 }
 function ship() {
-    current=`git branch | awk '/\*/ { print $2 }'`
-    git checkout master
-    git merge origin # should be fast forward
-    git merge $current
-    git push origin master
-    git checkout $current
+    set -x
+
+    current=`git branch | awk '/\*/ { print $2 }'` && \
+        git checkout master && \
+        git merge origin && \
+        git merge $current && \
+        git push origin master && \
+        git checkout $current
 }
 function ssp() { hack && rake && ship }
 
@@ -95,7 +99,9 @@ extract_archive () {
     done
 }
 
-roll () {
+function roll () {
+    set -x
+
     FILE=$1
     shift
     case $FILE in
@@ -107,7 +113,9 @@ roll () {
     esac
 }
 
-unroll () {
+function unroll () {
+    set -x
+
     FILE=$1
     shift
     case $FILE in
@@ -120,10 +128,19 @@ unroll () {
 }
 
 function mkcd() {
-    mkdir -p "$1" && cd "$1";
+    set -x
+
+    mkdir -p -- "$*" && \
+        pushd -- "$*";
 }
 function mkcdtmp() {
-    mkdir -p "$1" && cd "$1" && $SHELL && cd - && rm -rf "$1";
+    set -x
+
+    mkdir -p -- "$*" && \
+        pushd -- "$*" && \
+        $SHELL && \
+        popd && \
+        rm -rf -- "$*"
 }
 function hex2dec { awk 'BEGIN { printf "%d\n",0x$1}'; }
 function dec2hex { awk 'BEGIN { printf "%x\n",$1}'; }
@@ -131,10 +148,15 @@ function dec2hex { awk 'BEGIN { printf "%x\n",$1}'; }
 function mkmine() { sudo chown -R ${USER} ${1:-.}; }
 # sanitize - set file/directory owner and permissions to normal values (644/755)
 # Usage: sanitize <file>
-sanitize() {
+function sanitize() {
+    sudo chown -R ${USER}.users "$@"
     chmod -R u=rwX,go=rX "$@"
-    chown -R ${USER}.users "$@"
 }
 
 #compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha"' extract_archive
 
+function aptkeyadd() {
+    gpg --recv-key $1 && \
+        read -q "?Continue? (y/n)" && \
+        gpg -a --export $1 | sudo apt-key add -
+}
