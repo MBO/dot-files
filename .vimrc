@@ -39,6 +39,7 @@ set listchars=eol:$,precedes:«,extends:»,tab:»·,trail:· " lsc:
 set noequalalways       " noea: don't always keep windows at equal size
 set noerrorbells        " noeb:  ring the bell for error messages
 set nowrap              " nowrap:  lines will not wrap
+set linebreak           " lbr:  break lines at breakat when wrap is on
 set number              " nu:  precede each line with its line number
 set numberwidth=4       " nuw:  minimal number of columns to use for number
 set showmatch           " sm:  jump to the matching bracket
