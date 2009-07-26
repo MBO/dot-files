@@ -160,3 +160,8 @@ function aptkeyadd() {
         read -q "?Continue? (y/n)" && \
         gpg -a --export $1 | sudo apt-key add -
 }
+function wgetget() {
+    #wget -r          -E               -N             -k              -K                 -l          -np         -nH                   -p
+    #wget --recursive --html-extension --timestamping --convert-links --backup-converted --level=inf --no-parent --no-host-directories --page-requisites
+    wget -r -E -N -k -K -l -np -nH -p "$*"
+}
