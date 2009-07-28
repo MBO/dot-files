@@ -5,6 +5,12 @@
 alias ls='ls --color=auto -hF'
 alias ll='ls --color=auto -hFl'
 alias la='ls --color=auto -hFlA'
+
+alias t='tree -hF --dirsfirst'
+alias tl='tree -hFugp --dirsfirst'
+alias ta='tree -hFugpa --dirsfirst'
+alias tfi='tree -hFugpafi --dirsfirst'
+
 alias m='less -S'
 alias zm='zless -S'
 
@@ -17,8 +23,6 @@ alias svim='sudo gvim'
 alias s='screen -DR'
 
 alias rmf='rm -rf'
-
-alias guu='gem update --system && gem update'
 
 alias -g M='2>&1 | less -S'
 alias -g C='| wc -l'
