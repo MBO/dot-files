@@ -37,10 +37,16 @@ function src() {
 }
 
 # ruby gem functions
+#
+# use --format-executable? not yet, but I'll try someday
+function gi() {
+    set -x
+    gem install -t -E $*
+}
 function guu() {
     set -x
     gem update --system
-    gem update
+    gem update -t -E
 }
 
 # git functions
