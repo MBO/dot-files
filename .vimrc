@@ -129,7 +129,7 @@ endif
 " gfn:  set Font
 if has("gui_running")
     if has("gui_gtk2")
-        set guifont=Inconsolata\ Medium\ 12,DejaVu\ Sans\ Mono\ 10,Monospace\ 10
+        set guifont=Inconsolata\ Medium\ 10,DejaVu\ Sans\ Mono\ 10,Monospace\ 10
     elseif has("x11")
         " Also for GTK 1
         set guifont=*-lucidatypewriter-medium-r-normal-*-*-100-*-*-m-*-*
