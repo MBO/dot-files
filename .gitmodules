@@ -31,3 +31,6 @@
 [submodule ".vim/_/vim-surround"]
 	path = .vim/_/vim-surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/_/ack.vim"]
+	path = .vim/_/ack.vim
+	url = git://github.com/mileszs/ack.vim.git
