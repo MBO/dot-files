@@ -7,6 +7,7 @@ call NERDSnippetsReset()
 
 "slurp up all our snippets
 call NERDSnippetsFromDirectory("~/.vim/snippets")
+call NERDSnippetsFromDirectory("~/.vim/my-snippets")
 
 "use our html snippets for eruby and xhtml too
 "call NERDSnippetsFromDirectoryForFiletype('~/.vim/snippets/html', 'eruby')
