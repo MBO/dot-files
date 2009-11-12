@@ -14,28 +14,33 @@ export IGNOREEOF=3
 export LESS="--ignore-case --silent --RAW-CONTROL-CHARS --chop-long-lines"
 
 # Exports
-export PATH=~/bin:$PATH
+export PATH=$HOME/bin:$PATH
 
-if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
+if [ -s $HOME/.rvm/scripts/rvm ] ; then source $HOME/.rvm/scripts/rvm ; fi
 
 # Ruby
 #export RI="--doc-dir=$HOME/share/ri --format ansi"
 #export RUBYOPT="rubygems"
-export PATH=$PATH:/home/mirko/.gem/ruby/1.8/bin
+export PATH=$PATH:$HOME/.gem/ruby/1.8/bin
 
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 export PATH=$PATH:$JAVA_HOME/bin
 
 # Groovy & Grails & Griffin
-export GROOVY_HOME=~/Java/groovy
-export GRAILS_HOME=~/Java/grails
-export GRIFFON_HOME=~/Java/griffon
+export GROOVY_HOME=$HOME/Java/groovy
+export GRAILS_HOME=$HOME/Java/grails
+export GRIFFON_HOME=$HOME/Java/griffon
 export PATH=$PATH:$GROOVY_HOME/bin:$GRAILS_HOME/bin:$GRIFFON_HOME/bin
 
 # Scala
-export SCALA_HOME=~/Java/scala
+export SCALA_HOME=$HOME/Java/scala
 export PATH=$PATH:$SCALA_HOME/bin
+
+# Go (from google's http://golang.org/doc/install.html)
+export GOROOT=$HOME/go
+export GOOS=linux
+export GOARCH=386
 
 export LD_LIBRARY_PATH=$HOME/lib
 
