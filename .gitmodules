@@ -34,3 +34,6 @@
 [submodule ".vim/_/ack.vim"]
 	path = .vim/_/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
+[submodule ".vim/_/find_in_nerdtree"]
+	path = .vim/_/find_in_nerdtree
+	url = git://github.com/dmcinnes/FindInNERDTree.git

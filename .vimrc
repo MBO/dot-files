@@ -11,6 +11,8 @@ winsize 90 30
 "=============================================================================
 " General settings
 "-----------------------------------------------------------------------------
+set balloondelay=999999 " bdlay:  delay in milliseconds before baloon popup
+set noballooneval       " nobeval:  no balloon-eval functoinality
 set helpheight=10       " hh: minimal initial height of the help window
 set history=50          " hi:  keep 50 lines of :command line history
 set modeline            " ml:  turn on modelines
@@ -97,7 +99,7 @@ set spelllang=en,pl
 "-----------------------------------------------------------------------------
 " gp:  use custom grep program (perl script)
 if has("unix")
-    set grepprg=ack\ -a
+    set grepprg="ack -a"
 elseif has("win32")
     set grepprg="C:\\cmp\\ack.pl -a"
 endif
@@ -116,8 +118,8 @@ au FileType text setlocal textwidth=78
 "au WinEnter * set cursorline " cursorcolumn
 "au WinLeave * set nocursorline " nocursorcolumn
 " mappings for tabs
-map <C-Tab> gt
-map <C-S-Tab> gT
+map <C-Tab>    gt
+map <C-S-Tab>  gT
 
 " prepare to :Man command
 if has("unix")
@@ -159,8 +161,8 @@ function! <SID>SwitchPSCStyle(inc)
     execute "colorscheme" s:colo_tab[s:colo_id]
 endfunction
 
-map <silent> <leader>tn :call <SID>SwitchPSCStyle(1)<CR>
-map <silent> <leader>tp :call <SID>SwitchPSCStyle(-1)<CR>
+map <silent><leader>tn  :call <SID>SwitchPSCStyle(1)<CR>
+map <silent><leader>tp  :call <SID>SwitchPSCStyle(-1)<CR>
 call <SID>SwitchPSCStyle(0)
 
 "=============================================================================
@@ -178,26 +180,30 @@ endif
 "=============================================================================
 " Plugins
 "-----------------------------------------------------------------------------
-" Buffer Explorer / Browser:
-" http://www.vim.org/scripts/script.php?script_id=42
-
-" Tag List: http://vim-taglist.sourceforge.net
-map <silent> <F4> :TlistToggle<CR>
-let Tlist_GainFocus_On_ToggleOpen=1
-if has("win32")
-    let Tlist_Ctags_Cmd="C:\\cmd\\ctags.exe"
-elseif has("unix")
-    let Tlist_Ctags_Cmd="ctags"
-endif
-
-" NERD tree
-" NERD commenter
-" Perl IDE
-" Source Explorrer
-" Calendar
+" Ack
+" Buffer Explorer / Browser (http://www.vim.org/scripts/script.php?script_id=42)
+" FindInNERDTree
+map  <silent><S-F9>  :call FindInNERDTree()<CR>
+imap <silent><S-F9>  <C-O>:call FindInNERDTree()<CR>
 " Gist
+let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_open_browser_after_post=1
 let g:gist_browser_command='opera %URL% &'
+" NERDCommenter
+" NERDSnippets
+" NERDTree
+map  <silent><F9>  :NERDTreeToggle<CR>
+imap <silent><F9>  <C-O>:NERDTreeToggle<CR>
+let NERDTreeCaseSensitiveSort=1
+let NERDTreeChDirMode=2
+let NERDTreeWinPos="right"
+" Surround
+" TagList http://vim-taglist.sourceforge.net
+map  <silent><F4>  :TlistToggle<CR>
+imap <silent><F4>  <C-O>:TlistToggle<CR>
+let Tlist_GainFocus_On_ToggleOpen=1
+let Tlist_Show_One_File=1
+" Vimwiki
 
 "=============================================================================
 " Vim Tips Wiki (vim.wikia.com)
@@ -216,8 +222,8 @@ endif
 
 " Tip 964
 " Copy/Paste keybindings
-map  <F7> gg"*yG <C-o> <C-o>
-vmap <F7> "*y
+map  <F7>   gg"*yG<C-o><C-o>
+vmap <F7>   "*y
 imap <S-F7> <C-o>"*p
 map  <S-F7> "*p
 set pastetoggle=<F8>   " pt:  key used to toggle :past
@@ -238,10 +244,13 @@ MapToggle <F3> list
 " Tip 764
 "nnoremap <CR> :set nohlsearch \| set hlsearch?<CR>
 
-map <F5> :e!<CR>
+map  <F5>    :e!<CR>
+imap <F5>    <C-O>:e!<CR>
 
-map <F6> :split<CR>
-map <S-F6> :vsplit<CR>
+map  <silent><F6>    :split<CR>
+imap <silent><F6>    <C-O>:split<CR>
+map  <silent><S-F6>  :vsplit<CR>
+imap <silent><S-F6>  <C-O>:vsplit<CR>
 
 let g:skip_loading_mswin=1
 behave xterm
@@ -254,8 +263,8 @@ map <S-MouseUp> <C-B>
 map <C-MouseUp> <C-B>
 
 " Map C-BS to work like in Windows in insert mode
-imap <C-BS> <C-O>db
-
+imap <C-BS>   <C-O>db
+imap <C-DEL>  <C-O>dw
 
 " Syntax settings (:he syntax.txt)
 " 2HTML
@@ -301,7 +310,6 @@ let python_highlight_space_errors=1
 let ruby_operators=1
 let ruby_fold=1
 let ruby_space_errors=1
-
 
 " TEX
 let tex_fold_enabled=1
