@@ -182,9 +182,6 @@ endif
 "-----------------------------------------------------------------------------
 " Ack
 " Buffer Explorer / Browser (http://www.vim.org/scripts/script.php?script_id=42)
-" FindInNERDTree
-map  <silent><S-F9>  :call FindInNERDTree()<CR>
-imap <silent><S-F9>  <C-O>:call FindInNERDTree()<CR>
 " Gist
 let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_open_browser_after_post=1
@@ -192,8 +189,10 @@ let g:gist_browser_command='opera %URL% &'
 " NERDCommenter
 " NERDSnippets
 " NERDTree
-map  <silent><F9>  :NERDTreeToggle<CR>
-imap <silent><F9>  <C-O>:NERDTreeToggle<CR>
+map  <silent><F9>    :NERDTreeToggle<CR>
+imap <silent><F9>    <C-O>:NERDTreeToggle<CR>
+map  <silent><S-F9>  :NERDTreeFind<CR>
+imap <silent><S-F9>  <C-O>:NERDTreeFind<CR>
 let NERDTreeCaseSensitiveSort=1
 let NERDTreeChDirMode=2
 let NERDTreeWinPos="right"
