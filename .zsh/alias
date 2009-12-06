@@ -14,15 +14,20 @@ alias tfi='tree -hFugpafi --dirsfirst'
 alias m='less -S'
 alias zm='zless -S'
 
-alias c='clear'
-alias cdc='cd; clear'
-
 alias v='gvim'
 alias svim='sudo gvim'
 
 alias s='screen -DR'
+alias b='byobu'
 
 alias rmf='rm -rf'
+
+alias ga='git add'
+alias gl='git log'
+alias gs='git status'
+alias gp='git push'
+alias gc='git commit'
+alias gpl='git pull'
 
 alias -g M='2>&1 | less -S'
 alias -g C='| wc -l'

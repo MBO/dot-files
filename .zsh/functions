@@ -50,13 +50,8 @@ function guu() {
 }
 
 # git functions
-function ga() { git add $* }
-function gl() { git log $* }
-function gs() { git status $* }
-function gp() { git push $* }
-function gc() { git commit -m "$*" }
+function gcc() { git commit -m "$*" }
 function gca() { git commit -am "$*" }
-function gpl() { git pull $* }
 
 function hack() {
     set -x
