@@ -50,7 +50,7 @@ function guu() {
 }
 
 # git functions
-function gcc() { git commit -m "$*" }
+function gc() { git commit -m "$*" }
 function gca() { git commit -am "$*" }
 
 function hack() {
