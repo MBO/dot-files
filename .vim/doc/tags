@@ -67,6 +67,7 @@
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
+:Search	vimwiki.txt	/*:Search*
 :TlistAddFiles	taglist.txt	/*:TlistAddFiles*
 :TlistAddFilesRecursive	taglist.txt	/*:TlistAddFilesRecursive*
 :TlistClose	taglist.txt	/*:TlistClose*
@@ -202,6 +203,7 @@ Tlist_Get_Tag_Prototype_By_Line()	taglist.txt	/*Tlist_Get_Tag_Prototype_By_Line(
 Tlist_Get_Tagname_By_Line()	taglist.txt	/*Tlist_Get_Tagname_By_Line()*
 Tlist_Set_App()	taglist.txt	/*Tlist_Set_App()*
 Tlist_Update_File_Tags()	taglist.txt	/*Tlist_Update_File_Tags()*
+VimwikiWeblinkHandler	vimwiki.txt	/*VimwikiWeblinkHandler*
 YRClear	yankring.txt	/*YRClear*
 YRClear-example	yankring.txt	/*YRClear-example*
 YRDeleteRange	yankring.txt	/*YRDeleteRange*
@@ -303,6 +305,7 @@ g:rails_tabstop	rails.txt	/*g:rails_tabstop*
 g:rails_url	rails.txt	/*g:rails_url*
 g:vimwiki_auto_checkbox	vimwiki.txt	/*g:vimwiki_auto_checkbox*
 g:vimwiki_badsyms	vimwiki.txt	/*g:vimwiki_badsyms*
+g:vimwiki_browsers	vimwiki.txt	/*g:vimwiki_browsers*
 g:vimwiki_camel_case	vimwiki.txt	/*g:vimwiki_camel_case*
 g:vimwiki_fold_empty_lines	vimwiki.txt	/*g:vimwiki_fold_empty_lines*
 g:vimwiki_fold_lists	vimwiki.txt	/*g:vimwiki_fold_lists*
@@ -312,6 +315,7 @@ g:vimwiki_hl_cb_checked	vimwiki.txt	/*g:vimwiki_hl_cb_checked*
 g:vimwiki_hl_headers	vimwiki.txt	/*g:vimwiki_hl_headers*
 g:vimwiki_list	vimwiki.txt	/*g:vimwiki_list*
 g:vimwiki_list_ignore_newline	vimwiki.txt	/*g:vimwiki_list_ignore_newline*
+g:vimwiki_listsyms	vimwiki.txt	/*g:vimwiki_listsyms*
 g:vimwiki_lower	vimwiki.txt	/*g:vimwiki_lower*
 g:vimwiki_menu	vimwiki.txt	/*g:vimwiki_menu*
 g:vimwiki_stripsym	vimwiki.txt	/*g:vimwiki_stripsym*
@@ -523,6 +527,7 @@ vimwiki-option-html_footer	vimwiki.txt	/*vimwiki-option-html_footer*
 vimwiki-option-html_header	vimwiki.txt	/*vimwiki-option-html_header*
 vimwiki-option-index	vimwiki.txt	/*vimwiki-option-index*
 vimwiki-option-maxhi	vimwiki.txt	/*vimwiki-option-maxhi*
+vimwiki-option-nested_syntaxes	vimwiki.txt	/*vimwiki-option-nested_syntaxes*
 vimwiki-option-path	vimwiki.txt	/*vimwiki-option-path*
 vimwiki-option-path_html	vimwiki.txt	/*vimwiki-option-path_html*
 vimwiki-option-syntax	vimwiki.txt	/*vimwiki-option-syntax*
