@@ -37,3 +37,6 @@
 [submodule ".vim/_/find_in_nerdtree"]
 	path = .vim/_/find_in_nerdtree
 	url = git://github.com/dmcinnes/FindInNERDTree.git
+[submodule ".vim/_/vim-markdown"]
+	path = .vim/_/vim-markdown
+	url = http://github.com/plasticboy/vim-markdown.git
