@@ -1,0 +1,12 @@
+--smart-case
+
+--sort-files
+
+# Always color, even if piping to another program
+--color
+
+# Use my less options
+--pager=less -iqRS
+
+--type-set
+ruby=.rb,.rhtml,.rjs,.rxml,.erb,.rake,.haml
