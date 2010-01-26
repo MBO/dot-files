@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 case $TERM in
     *xterm*|rxvt|rxvt-unicode|rxvt-256color|(dt|k|E)term)
     precmd () { print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~]\a" } 
@@ -22,6 +20,7 @@ precmd() {
 
     vcs_info
     [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"
+    psvar[2]="(`rvm-prompt i`)-[`rvm-prompt v p`]"
 }
 
 setprompt () {
@@ -39,17 +38,17 @@ setprompt () {
         #   cyan
         #     "@"
         #   red
-        #     "hostname"
-        eval PR_USER='%B%F{yellow}%n%F{cyan}@%F{red}%m%f%b'
+        #     "hostname"."line"
+        eval PR_USER='%B%F{cyan}%n%F{red}@%F{green}%m.%l%f%b'
         eval PR_USER_OP='%F{red}%#%f'
     elif [[ $UID -eq 0 ]]; then # root
-        eval PR_USER='%B%F{yellow}%n%F{cyan}@%F{red}%m%f%b'
+        eval PR_USER='%B%F{cyan}%n%F{red}@%F{green}%m%f%b'
         eval PR_USER_OP='%F{red}%#%f'
     fi  
 
     vcs_info
     PROMPT=$'\n${PR_USER} %F{blue}%~%f\n%F{magenta}%*%f ${PR_USER_OP} '
-    RPROMPT='%B%F{blue}%1v%f%b'
+    RPROMPT='%B%F{blue}%1v%f%F{green}%2v%f%b'
 }
 
 setprompt

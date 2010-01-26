@@ -28,6 +28,8 @@ alias gs='git status'
 alias gp='git push'
 alias gpl='git pull'
 
+alias ur='unicorn_rails'
+
 alias -g M='2>&1 | less -S'
 alias -g C='| wc -l'
 alias -g S='| sort'
