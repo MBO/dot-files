@@ -28,14 +28,14 @@ export JAVA_HOME=/usr/lib/jvm/java-6-sun
 export PATH=$PATH:$JAVA_HOME/bin
 
 # Groovy & Grails & Griffin
-export GROOVY_HOME=$HOME/Java/groovy
-export GRAILS_HOME=$HOME/Java/grails
-export GRIFFON_HOME=$HOME/Java/griffon
-export PATH=$PATH:$GROOVY_HOME/bin:$GRAILS_HOME/bin:$GRIFFON_HOME/bin
+#export GROOVY_HOME=$HOME/Java/groovy
+#export GRAILS_HOME=$HOME/Java/grails
+#export GRIFFON_HOME=$HOME/Java/griffon
+#export PATH=$PATH:$GROOVY_HOME/bin:$GRAILS_HOME/bin:$GRIFFON_HOME/bin
 
 # Scala
-export SCALA_HOME=$HOME/Java/scala
-export PATH=$PATH:$SCALA_HOME/bin
+#export SCALA_HOME=$HOME/Java/scala
+#export PATH=$PATH:$SCALA_HOME/bin
 
 # Go (from google's http://golang.org/doc/install.html)
 export GOROOT=$HOME/go
