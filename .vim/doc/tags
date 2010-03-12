@@ -511,6 +511,8 @@ taglist-session	taglist.txt	/*taglist-session*
 taglist-todo	taglist.txt	/*taglist-todo*
 taglist-using	taglist.txt	/*taglist-using*
 taglist.txt	taglist.txt	/*taglist.txt*
+vS	surround.txt	/*vS*
+vgS	surround.txt	/*vgS*
 vimwiki	vimwiki.txt	/*vimwiki*
 vimwiki-author	vimwiki.txt	/*vimwiki-author*
 vimwiki-calendar	vimwiki.txt	/*vimwiki-calendar*
