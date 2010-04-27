@@ -22,6 +22,7 @@ set mouse=a             " mouse:  enable the use of the mouse
 set nobackup            " nobk:  don't keep backup file
 set ttyfast             " tf:  indicates a fast terminal connection
 set undolevels=1000     " ul:  lots of undo
+set hidden              " hid:  don't display message about unsaved buffer
 
 "=============================================================================
 " Folds
@@ -107,10 +108,12 @@ endif
 syntax on               " turn on syntax highlighting
 if has("autocmd")
     filetype plugin indent on
-endif
 
-" For all text files set 'textwidth' to 78 characters.
-au FileType text setlocal textwidth=78
+    " For all text files set 'textwidth' to 78 characters.
+    au FileType text setlocal textwidth=78
+    au FileType javascript setlocal sw=4 ts=4 sts=4 et makeprg=jslint\ % efm=%ELint\ at\ line\ %l\ character\ %c:\ %m,%+C%.%#,%C%$,%Z
+    au FileType cucumber setlocal sw=2 ts=2 sts=2 et
+endif
 
 " Highlighting current cursor line and collumn for active window
 " cul:  highlight the screen line of the cursor
