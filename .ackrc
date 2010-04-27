@@ -8,5 +8,27 @@
 # Use my less options
 --pager=less -iqRS
 
---type-set
-ruby=.rb,.rhtml,.rjs,.rxml,.erb,.rake,.haml
+# HAML & SASS
+--type-add=ruby=.haml,.sass,.scss
+--type-add=html=.haml
+--type-add=css=.sass,.scss
+# Ruby
+--type-add=ruby=Rakefile,Capfile,Gemfile
+# Cucumber
+--type-set=cucumber=.feature
+# CoffeeScript
+--type-set=coffeescript=.coffee
+# JSON
+--type-set=json=.json
+--type-add=js=.json
+--type-add=yaml=.json
+# Conf
+--type-set=conf=.conf,.config
+# Markdown, Textile, Rdoc & POD
+--type-set=markdown=.markdown,.md,.mdown,.mkd,.mkdn
+--type-set=textile=.textile
+--type-set=rdoc=.rdoc
+--type-set=pod=.pod
+# documentation
+--type-set=documentation=.markdown,.md,.mdown,.mkd,.mkdn,.textile,.rdoc,.pod.txt
+
