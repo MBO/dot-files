@@ -38,9 +38,13 @@ export PATH=$PATH:$JAVA_HOME/bin
 #export PATH=$PATH:$SCALA_HOME/bin
 
 # Go (from google's http://golang.org/doc/install.html)
-export GOROOT=$HOME/go
-export GOOS=linux
-export GOARCH=386
+#export GOROOT=$HOME/go
+#export GOOS=linux
+#export GOARCH=386
+
+export PATH=$PATH:$HOME/Code/github/git-achievements
+
+export PATH=$PATH:$HOME/nginx/sbin
 
 export LD_LIBRARY_PATH=$HOME/lib
 

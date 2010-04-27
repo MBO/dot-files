@@ -29,6 +29,8 @@ alias gp='git push'
 alias gpl='git pull'
 
 alias ur='unicorn_rails --port=3000'
+alias ng='nginx'
+alias rr='touch tmp/restart.txt'
 
 alias -g M='2>&1 | less -S'
 alias -g C='| wc -l'

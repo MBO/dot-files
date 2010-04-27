@@ -52,6 +52,7 @@ function guu() {
 # git functions
 function gc() { git commit -m "$*" }
 function gca() { git commit -am "$*" }
+function gctmp() { git add -A && git commit -m "`date --rfc-3339=ns`" }
 
 function hack() {
     set -x
@@ -65,7 +66,7 @@ function ship() {
 
     current=`git branch | awk '/\*/ { print $2 }'` && \
         git checkout master && \
-        git merge origin && \
+        git merge origin/master && \
         git merge $current && \
         git push origin master && \
         git checkout $current
