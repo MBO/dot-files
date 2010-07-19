@@ -11,14 +11,13 @@ alias tl='tree -hFugp --dirsfirst'
 alias ta='tree -hFugpa --dirsfirst'
 alias tfi='tree -hFugpafi --dirsfirst'
 
+alias a='ack-grep'
+alias b='byobu'
+alias s='sudo'
+alias se='sudoedit'
+alias v='gvim'
 alias m='less -S'
 alias zm='zless -S'
-
-alias v='gvim'
-alias svim='sudo gvim'
-
-alias s='screen -DR'
-alias b='byobu'
 
 alias rmf='rm -rf'
 
@@ -31,6 +30,7 @@ alias gpl='git pull'
 alias ur='unicorn_rails --port=3000'
 alias ng='nginx'
 alias rr='touch tmp/restart.txt'
+
 
 alias -g M='2>&1 | less -S'
 alias -g C='| wc -l'

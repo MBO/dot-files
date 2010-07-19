@@ -52,7 +52,7 @@ function guu() {
 # git functions
 function gc() { git commit -m "$*" }
 function gca() { git commit -am "$*" }
-function gctmp() { git add -A && git commit -m "`date --rfc-3339=ns`" }
+function gctmp() { git add -A && git commit -m "temporal commit: `date --rfc-3339=ns`" }
 
 function hack() {
     set -x
