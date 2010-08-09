@@ -1,6 +1,6 @@
 "=============================================================================
 " .vimrc config file
-" Author: Miros¿aw Boruta (boruta.miroslaw.gmail.com)
+" Author: Mirosław Boruta (boruta.miroslaw.gmail.com)
 "=============================================================================
 
 " set nocompatible on, changes other settings
@@ -100,26 +100,24 @@ set spelllang=en,pl
 "-----------------------------------------------------------------------------
 " gp:  use custom grep program (perl script)
 if has("unix")
-    set grepprg="ack -a"
-elseif has("win32")
-    set grepprg="C:\\cmp\\ack.pl -a"
+    set grepprg="ack-grep -a"
 endif
 
 syntax on               " turn on syntax highlighting
-if has("autocmd")
-    filetype plugin indent on
+" Turn off filetype to init pathogen first
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+filetype plugin indent on
 
-    " For all text files set 'textwidth' to 78 characters.
-    au FileType text setlocal textwidth=78
-    au FileType javascript setlocal sw=4 ts=4 sts=4 et makeprg=jslint\ % efm=%ELint\ at\ line\ %l\ character\ %c:\ %m,%+C%.%#,%C%$,%Z
-    au FileType cucumber setlocal sw=2 ts=2 sts=2 et
-endif
+" For all text files set 'textwidth' to 78 characters.
+au FileType text setlocal textwidth=78
 
 " Highlighting current cursor line and collumn for active window
 " cul:  highlight the screen line of the cursor
 " cuc:  highlight the screen column
-"au WinEnter * set cursorline " cursorcolumn
-"au WinLeave * set nocursorline " nocursorcolumn
+" au WinEnter * set cursorline " cursorcolumn
+" au WinLeave * set nocursorline " nocursorcolumn
 " mappings for tabs
 map <C-Tab>    gt
 map <C-S-Tab>  gT
@@ -184,6 +182,7 @@ endif
 " Plugins
 "-----------------------------------------------------------------------------
 " Ack
+let g:ackprg="ack-grep -H --nocolor --nogroup"
 " Buffer Explorer / Browser (http://www.vim.org/scripts/script.php?script_id=42)
 " Gist
 let g:gist_clip_command = 'xclip -selection clipboard'
@@ -318,3 +317,4 @@ let tex_fold_enabled=1
 let tex_comment_nospell=1
 let g:tex_indent_items=1
 
+" vim:set encoding=utf-8

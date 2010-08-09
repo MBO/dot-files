@@ -1,42 +1,42 @@
-[submodule ".vim/_/nerdcommenter"]
-	path = .vim/_/nerdcommenter
-	url = git://github.com/scrooloose/nerdcommenter.git
-[submodule ".vim/_/nerdsnippets"]
-	path = .vim/_/nerdsnippets
-	url = git://github.com/scrooloose/nerdsnippets.git
-[submodule ".vim/_/nerdtree"]
-	path = .vim/_/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
-[submodule ".vim/_/snippets"]
-	path = .vim/_/snippets
-	url = git://github.com/scrooloose/snippets.git
-[submodule ".vim/_/vim-cucumber"]
-	path = .vim/_/vim-cucumber
-	url = git://github.com/tpope/vim-cucumber.git
-[submodule ".vim/_/vim-fugitive"]
-	path = .vim/_/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
-[submodule ".vim/_/vim-git"]
-	path = .vim/_/vim-git
-	url = git://github.com/tpope/vim-git.git
-[submodule ".vim/_/vim-haml"]
-	path = .vim/_/vim-haml
-	url = git://github.com/tpope/vim-haml.git
-[submodule ".vim/_/vim-rails"]
-	path = .vim/_/vim-rails
-	url = git://github.com/tpope/vim-rails.git
-[submodule ".vim/_/vim-speeddating"]
-	path = .vim/_/vim-speeddating
-	url = git://github.com/tpope/vim-speeddating.git
-[submodule ".vim/_/vim-surround"]
-	path = .vim/_/vim-surround
-	url = git://github.com/tpope/vim-surround.git
-[submodule ".vim/_/ack.vim"]
-	path = .vim/_/ack.vim
+[submodule ".vim/bundle/ack.vim"]
+	path = .vim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
-[submodule ".vim/_/find_in_nerdtree"]
-	path = .vim/_/find_in_nerdtree
-	url = git://github.com/dmcinnes/FindInNERDTree.git
-[submodule ".vim/_/vim-markdown"]
-	path = .vim/_/vim-markdown
-	url = http://github.com/plasticboy/vim-markdown.git
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/vim-cucumber"]
+	path = .vim/bundle/vim-cucumber
+	url = git://github.com/tpope/vim-cucumber.git
+[submodule ".vim/bundle/vim-endwise"]
+	path = .vim/bundle/vim-endwise
+	url = git://github.com/tpope/vim-endwise.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/vim-haml"]
+	path = .vim/bundle/vim-haml
+	url = git://github.com/tpope/vim-haml.git
+[submodule ".vim/bundle/vim-markdown"]
+	path = .vim/bundle/vim-markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule ".vim/bundle/vim-ragtag"]
+	path = .vim/bundle/vim-ragtag
+	url = git://github.com/tpope/vim-ragtag.git
+[submodule ".vim/bundle/vim-rails"]
+	path = .vim/bundle/vim-rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule ".vim/bundle/vim-repeat"]
+	path = .vim/bundle/vim-repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule ".vim/bundle/vim-speeddating"]
+	path = .vim/bundle/vim-speeddating
+	url = git://github.com/tpope/vim-speeddating.git
+[submodule ".vim/bundle/vim-surround"]
+	path = .vim/bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/vim-unimpaired"]
+	path = .vim/bundle/vim-unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git

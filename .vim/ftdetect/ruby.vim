@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufReadPost *.rb set sw:2 et
+autocmd Filetype ruby setlocal sw=2 ts=2 sts=2 et
