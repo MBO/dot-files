@@ -1,4 +1,3 @@
-screen -t root sudo su -
 screen -t notify-osd -M tailf $HOME/.cache/notify-osd.log
 screen -t htop htop
 screen -t shell motd+shell
