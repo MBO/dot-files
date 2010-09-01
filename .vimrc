@@ -267,6 +267,14 @@ map <C-MouseUp> <C-B>
 imap <C-BS>   <C-O>db
 imap <C-DEL>  <C-O>dw
 
+" Fuf
+map <silent> <leader>fb :FufBuffer<CR>
+map <silent> <leader>fd :FufDir<CR>
+map <silent> <leader>fD :FufDirWithCurrentBufferCwd<CR>
+map <silent> <leader>ff :FufFile<CR>
+map <silent> <leader>fF :FufFileWithCurrentBufferCwd<CR>
+map <silent> <leader>fl :FufLine<CR>
+
 " Syntax settings (:he syntax.txt)
 " 2HTML
 let html_ignore_folding=1
