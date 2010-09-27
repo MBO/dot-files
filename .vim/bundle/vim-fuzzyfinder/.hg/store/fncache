@@ -28,3 +28,5 @@ data/plugin/fuzzyfinder.vim.i
 data/autoload/fuf/allfile.vim.i
 data/autoload/fuf/aroundmrufile.vim.i
 data/autoload/fuf/coveragefile.vim.i
+data/autoload/fuf/bookmarkdir.vim.i
+data/autoload/fuf/bookmarkfile.vim.i
