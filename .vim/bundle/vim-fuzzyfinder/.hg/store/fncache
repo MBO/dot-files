@@ -25,3 +25,6 @@ data/doc/fuzzyfinder.jax.i
 data/doc/fuzzyfinder.txt.i
 data/plugin/fuf.vim.i
 data/plugin/fuzzyfinder.vim.i
+data/autoload/fuf/allfile.vim.i
+data/autoload/fuf/aroundmrufile.vim.i
+data/autoload/fuf/coveragefile.vim.i

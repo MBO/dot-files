@@ -20,6 +20,7 @@ set modelines=5         " mls:  number of lines to check for modeline
 set more                " more:  page on extended output
 set mouse=a             " mouse:  enable the use of the mouse
 set nobackup            " nobk:  don't keep backup file
+set noswapfile          " noswf:  don't keep swapfiles
 set ttyfast             " tf:  indicates a fast terminal connection
 set undolevels=1000     " ul:  lots of undo
 set hidden              " hid:  don't display message about unsaved buffer
@@ -95,6 +96,9 @@ set tabstop=4           " ts:  number of spaces that a Tab counts for
 set spelllang=en,pl
 "set spell
 
+" Set mapleader to ","
+let mapleader=","
+
 "=============================================================================
 " Misc
 "-----------------------------------------------------------------------------
@@ -118,9 +122,6 @@ au FileType text setlocal textwidth=78
 " cuc:  highlight the screen column
 " au WinEnter * set cursorline " cursorcolumn
 " au WinLeave * set nocursorline " nocursorcolumn
-" mappings for tabs
-map <C-Tab>    gt
-map <C-S-Tab>  gT
 
 " prepare to :Man command
 if has("unix")
@@ -161,9 +162,6 @@ function! <SID>SwitchPSCStyle(inc)
     endif
     execute "colorscheme" s:colo_tab[s:colo_id]
 endfunction
-
-map <silent><leader>tn  :call <SID>SwitchPSCStyle(1)<CR>
-map <silent><leader>tp  :call <SID>SwitchPSCStyle(-1)<CR>
 call <SID>SwitchPSCStyle(0)
 
 "=============================================================================
@@ -191,19 +189,14 @@ let g:gist_browser_command='opera %URL% &'
 " NERDCommenter
 " NERDSnippets
 " NERDTree
-map  <silent><F9>    :NERDTreeToggle<CR>
-imap <silent><F9>    <C-O>:NERDTreeToggle<CR>
-map  <silent><S-F9>  :NERDTreeFind<CR>
-imap <silent><S-F9>  <C-O>:NERDTreeFind<CR>
 let NERDTreeCaseSensitiveSort=1
 let NERDTreeChDirMode=2
-let NERDTreeWinPos="right"
+let NERDTreeWinPos="left"
 " Surround
 " TagList http://vim-taglist.sourceforge.net
-map  <silent><F4>  :TlistToggle<CR>
-imap <silent><F4>  <C-O>:TlistToggle<CR>
 let Tlist_GainFocus_On_ToggleOpen=1
 let Tlist_Show_One_File=1
+let Tlist_Use_Right_Window=1
 " Vimwiki
 
 "=============================================================================
@@ -221,59 +214,132 @@ endif
 "au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 "au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
-" Tip 964
-" Copy/Paste keybindings
-map  <F7>   gg"*yG<C-o><C-o>
-vmap <F7>   "*y
-imap <S-F7> <C-o>"*p
-map  <S-F7> "*p
+map  <silent> <F1>         :set hlsearch!<CR>
+imap <silent> <F1>    <C-O>:set hlsearch!<CR>
+map  <silent> <F2>         :set wrap!<CR>
+imap <silent> <F2>    <C-O>:set wrap!<CR>
+map  <silent> <F3>         :set list!<CR>
+imap <silent> <F3>    <C-O>:set list!<CR>
+map  <silent> <F4>         :TlistToggle<CR>
+imap <silent> <F4>    <C-O>:TlistToggle<CR>
+map  <silent> <F5>         :e!<CR>
+imap <silent> <F5>    <C-O>:e!<CR>
+map  <silent> <F6>         :vsplit<CR>
+imap <silent> <F6>    <C-O>:vsplit<CR>
+map  <silent> <S-F6>       :split<CR>
+imap <silent> <S-F6>  <C-O>:split<CR>
+map           <F7>         gg"*yG<C-o><C-o>
+vmap          <F7>         "*y
+imap          <S-F7>  <C-o>"*p
+map           <S-F7>       "*p
 set pastetoggle=<F8>   " pt:  key used to toggle :past
-
-" Tip 920
-" Map key to toggle opt
-function MapToggle(key, opt)
-    let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
-    exec 'nnoremap '.a:key.' '.cmd
-    exec 'inoremap '.a:key." \<C-O>".cmd
-endfunction
-command -nargs=+ MapToggle call MapToggle(<f-args>)
-" Display-altering option toggles
-MapToggle <F1> hlsearch
-MapToggle <F2> wrap
-MapToggle <F3> list
-
-" Tip 764
-"nnoremap <CR> :set nohlsearch \| set hlsearch?<CR>
-
-map  <F5>    :e!<CR>
-imap <F5>    <C-O>:e!<CR>
-
-map  <silent><F6>    :split<CR>
-imap <silent><F6>    <C-O>:split<CR>
-map  <silent><S-F6>  :vsplit<CR>
-imap <silent><S-F6>  <C-O>:vsplit<CR>
+map  <silent> <F9>         :NERDTreeToggle<CR>
+imap <silent> <F9>    <C-O>:NERDTreeToggle<CR>
+map  <silent> <S-F9>       :NERDTreeFind<CR>
+imap <silent> <S-F9>  <C-O>:NERDTreeFind<CR>
 
 let g:skip_loading_mswin=1
 behave xterm
 
-" Works only in xterm, not in Win ;-(
-map <S-MouseDown> <C-F>
-map <C-MouseDown> <C-F>
+map  <S-MouseDown>         <C-F>
+map  <C-MouseDown>         <C-F>
+map  <S-MouseUp>           <C-B>
+map  <C-MouseUp>           <C-B>
 
-map <S-MouseUp> <C-B>
-map <C-MouseUp> <C-B>
+map  <C-Tab>               gt
+map  <C-S-Tab>             gT
 
 " Map C-BS to work like in Windows in insert mode
-imap <C-BS>   <C-O>db
-imap <C-DEL>  <C-O>dw
+imap <C-BS>           <C-O>db
+imap <C-DEL>          <C-O>dw
+
+map  <silent> <leader>tn   :call <SID>SwitchPSCStyle(1)<CR>
+map  <silent> <leader>tp   :call <SID>SwitchPSCStyle(-1)<CR>
+
+map  <silent> <leader>/    :let @/=''<CR>
+map  <silent> <leader>l    :set list!<CR>
+" Scratch
+map  <silent> <leader>s    :Sscratch<CR>
+map  <silent> <leader>S    :Scratch<CR>
 
 " Fuf
-map <silent> <leader>fb :FufBuffer<CR>
-map <silent> <leader>fd :FufDir<CR>
-map <silent> <leader>fD :FufDirWithCurrentBufferCwd<CR>
-map <silent> <leader>ff :FufFile<CR>
-map <silent> <leader>fF :FufFileWithCurrentBufferCwd<CR>
-map <silent> <leader>fl :FufLine<CR>
+map  <silent> <leader>fb   :FufBuffer<CR>
+map  <silent> <leader>fd   :FufDir<CR>
+map  <silent> <leader>fD   :FufDirWithCurrentBufferDir<CR>
+map  <silent> <leader>ff   :FufFile<CR>
+map  <silent> <leader>fF   :FufFileWithCurrentBufferDir<CR>
+map  <silent> <leader>fl   :FufLine<CR>
+
+" Learn vim movements
+map  <Up>                  <Nop>
+map  <C-Up>                <Nop>
+map  <S-Up>                <Nop>
+map  <M-Up>                <Nop>
+map  <Down>                <Nop>
+map  <C-Down>              <Nop>
+map  <S-Down>              <Nop>
+map  <M-Down>              <Nop>
+map  <Left>                <Nop>
+map  <C-Left>              <Nop>
+map  <S-Left>              <Nop>
+map  <M-Left>              <Nop>
+map  <Right>               <Nop>
+map  <C-Right>             <Nop>
+map  <S-Right>             <Nop>
+map  <M-Right>             <Nop>
+map  <PageUp>              <Nop>
+map  <PageDown>            <Nop>
+map  <Home>                <Nop>
+map  <End>                 <Nop>
+map  <C-End>               <Nop>
+map  <C-PageUp>            <Nop>
+map  <C-PageDown>          <Nop>
+map  <C-Home>              <Nop>
+map  <S-End>               <Nop>
+map  <S-End>               <Nop>
+map  <S-PageUp>            <Nop>
+map  <S-PageDown>          <Nop>
+map  <S-Home>              <Nop>
+map  <S-End>               <Nop>
+map  <S-End>               <Nop>
+map  <M-PageUp>            <Nop>
+map  <M-PageDown>          <Nop>
+map  <M-Home>              <Nop>
+map  <M-End>               <Nop>
+imap <Up>                  <Nop>
+imap <C-Up>                <Nop>
+imap <S-Up>                <Nop>
+imap <M-Up>                <Nop>
+imap <Down>                <Nop>
+imap <C-Down>              <Nop>
+imap <S-Down>              <Nop>
+imap <M-Down>              <Nop>
+imap <Left>                <Nop>
+imap <C-Left>              <Nop>
+imap <S-Left>              <Nop>
+imap <M-Left>              <Nop>
+imap <Right>               <Nop>
+imap <C-Right>             <Nop>
+imap <S-Right>             <Nop>
+imap <M-Right>             <Nop>
+imap <PageUp>              <Nop>
+imap <PageDown>            <Nop>
+imap <Home>                <Nop>
+imap <C-End>               <Nop>
+imap <C-PageUp>            <Nop>
+imap <C-PageDown>          <Nop>
+imap <C-Home>              <Nop>
+imap <S-End>               <Nop>
+imap <S-End>               <Nop>
+imap <S-PageUp>            <Nop>
+imap <S-PageDown>          <Nop>
+imap <S-Home>              <Nop>
+imap <S-End>               <Nop>
+imap <S-End>               <Nop>
+imap <M-PageUp>            <Nop>
+imap <M-PageDown>          <Nop>
+imap <M-Home>              <Nop>
+imap <M-End>               <Nop>
 
 " Syntax settings (:he syntax.txt)
 " 2HTML

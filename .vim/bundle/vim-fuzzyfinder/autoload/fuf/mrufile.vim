@@ -1,13 +1,12 @@
 "=============================================================================
-" Copyright (c) 2007-2009 Takeshi NISHIDA
+" Copyright (c) 2007-2010 Takeshi NISHIDA
 "
 "=============================================================================
 " LOAD GUARD {{{1
 
-if exists('g:loaded_autoload_fuf_mrufile') || v:version < 702
+if !l9#guardScriptLoading(expand('<sfile>:p'), 702, 100)
   finish
 endif
-let g:loaded_autoload_fuf_mrufile = 1
 
 " }}}1
 "=============================================================================
@@ -54,11 +53,11 @@ function s:updateInfo()
   if !empty(&buftype) || !filereadable(expand('%'))
     return
   endif
-  let info = fuf#loadInfoFile(s:MODE_NAME)
-  let info.data = fuf#updateMruList(
-        \ info.data, { 'word' : expand('%:p'), 'time' : localtime() },
+  let items = fuf#loadDataFile(s:MODE_NAME, 'items')
+  let items = fuf#updateMruList(
+        \ items, { 'word' : expand('%:p'), 'time' : localtime() },
         \ g:fuf_mrufile_maxItem, g:fuf_mrufile_exclude)
-  call fuf#saveInfoFile(s:MODE_NAME, info)
+  call fuf#saveDataFile(s:MODE_NAME, 'items', items)
   call s:removeItemFromCache(expand('%:p'))
 endfunction
 
@@ -79,7 +78,7 @@ function s:formatItemUsingCache(item)
   if !exists('s:cache[a:item.word]')
     if filereadable(a:item.word)
       let s:cache[a:item.word] = fuf#makePathItem(
-            \ fnamemodify(a:item.word, ':~'), strftime(g:fuf_timeFormat, a:item.time), 0)
+            \ fnamemodify(a:item.word, ':p:~'), strftime(g:fuf_timeFormat, a:item.time), 0)
     else
       let s:cache[a:item.word] = {}
     endif
@@ -100,7 +99,7 @@ endfunction
 
 "
 function s:handler.getPrompt()
-  return fuf#formatPrompt(g:fuf_mrufile_prompt, self.partialMatching)
+  return fuf#formatPrompt(g:fuf_mrufile_prompt, self.partialMatching, '')
 endfunction
 
 "
@@ -109,7 +108,7 @@ function s:handler.getPreviewHeight()
 endfunction
 
 "
-function s:handler.targetsPath()
+function s:handler.isOpenable(enteredPattern)
   return 1
 endfunction
 
@@ -140,9 +139,9 @@ endfunction
 
 "
 function s:handler.onModeEnterPost()
-  " NOTE: Comparing filenames is faster than bufnr()
-  let bufNamePrev = fnamemodify(bufname(self.bufNrPrev), ':~')
-  let self.items = copy(self.info.data)
+  " NOTE: Comparing filenames is faster than bufnr('^' . fname . '$')
+  let bufNamePrev = fnamemodify(bufname(self.bufNrPrev), ':p:~')
+  let self.items = fuf#loadDataFile(s:MODE_NAME, 'items')
   call map(self.items, 's:formatItemUsingCache(v:val)')
   call filter(self.items, '!empty(v:val) && v:val.word !=# bufNamePrev')
   call fuf#mapToSetSerialIndex(self.items, 1)
