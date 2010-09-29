@@ -6,13 +6,13 @@
 " set nocompatible on, changes other settings
 set nocompatible        " nocp: turn off vi compatibility
 " resize the window, so that number and fold columns fit
-winsize 90 30
+"winsize 90 30
 
 "=============================================================================
 " General settings
 "-----------------------------------------------------------------------------
-set balloondelay=999999 " bdlay:  delay in milliseconds before baloon popup
-set noballooneval       " nobeval:  no balloon-eval functoinality
+set balloondelay=999999 " bdlay:  delay in milliseconds before balloon popup
+set noballooneval       " nobeval:  no balloon-eval functionality
 set helpheight=10       " hh: minimal initial height of the help window
 set history=50          " hi:  keep 50 lines of :command line history
 set modeline            " ml:  turn on modelines
@@ -37,13 +37,14 @@ set nofoldenable        " nofen:  open all folds on start
 "=============================================================================
 " Presentation
 "-----------------------------------------------------------------------------
-set formatoptions=cqrt  " fo:  automatic formatting
+set formatprg=par       " fp: format line programm with gq operator
+set formatoptions=tcrq  " fo:  automatic formatting
 set listchars=eol:$,precedes:«,extends:»,tab:»·,trail:· " lsc:
                         "   chars in 'list' mode
 set noequalalways       " noea: don't always keep windows at equal size
 set noerrorbells        " noeb:  ring the bell for error messages
 set nowrap              " nowrap:  lines will not wrap
-set linebreak           " lbr:  break lines at breakat when wrap is on
+set linebreak           " lbr:  break lines at break at when wrap is on
 set number              " nu:  precede each line with its line number
 set numberwidth=4       " nuw:  minimal number of columns to use for number
 set showmatch           " sm:  jump to the matching bracket
@@ -61,6 +62,7 @@ set ruler               " ru:  show the cursor position all the time
 set shortmess=aIoO      " shm:  really short messages, don't show intro
 set showcmd             " sc:  show command in the last line of the screen
 set showmode            " smd:  show the current input mode
+set showbreak=…         " sbr:  show start of hard wrapped line
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P  "this is default with ruler
 set statusline=%([%-n]%y\ %f%M%R%)\ %=\ %(%l,%c%V\ %P\ [0x%02.2B]%)
 "set statusline=[%n]\ %{ModifiedFlag()}%f\ %=%h%r%w\ (%v,%l)\ %P\
@@ -68,7 +70,7 @@ set statusline=%([%-n]%y\ %f%M%R%)\ %=\ %(%l,%c%V\ %P\ [0x%02.2B]%)
 "=============================================================================
 " File Autocompletion
 "-----------------------------------------------------------------------------
-set wildchar=<Tab>      " wc:  tab does autoconpletion
+set wildchar=<Tab>      " wc:  tab does autocompletion
 set wildmenu            " wmnu:  wildmenu
 set wildmode=full       " wim:  complete each full match
 
@@ -92,9 +94,8 @@ set shiftwidth=4        " sw:  number of spaces for each indent
 set smarttab            " sta:  insert shiftwidth spaces in front of line
 set tabstop=4           " ts:  number of spaces that a Tab counts for
 
-" grap spell file from ftp://ftp.vim.org/pub/vim/runtime/spell
-set spelllang=en,pl
-"set spell
+" grab spell file from ftp://ftp.vim.org/pub/vim/runtime/spell
+set spelllang=en
 
 " Set mapleader to ","
 let mapleader=","
@@ -142,7 +143,7 @@ if has("gui_running")
     endif
 
     set guioptions+=a   " go: a - autoselect
-    set guioptions+=c   " go: c - use consle dialogs
+    set guioptions+=c   " go: c - use console dialogs
     "set guioptions+=f   " go: f - don't detach the gui from the shell
     set guioptions-=T   " go: T - don't include toolbar
 endif
@@ -168,36 +169,32 @@ call <SID>SwitchPSCStyle(0)
 " automatically give executable permissions if file begins with #! and contains
 " '/bin/' in the path
 "=============================================================================
-function ModeChange()
+function! <SID>ModeChange()
     if getline(1) =~ "^#!.*/bin/"
         silent !chmod a+x <afile>
     endif
 endfunction
 if has("unix")
-    au BufWritePost * call ModeChange()
+    autocmd BufWritePost * call <SID>ModeChange()
 endif
+autocmd BufWritePost .vimrc source $MYVIMRC
 "=============================================================================
 " Plugins
 "-----------------------------------------------------------------------------
 " Ack
 let g:ackprg="ack-grep -H --nocolor --nogroup"
-" Buffer Explorer / Browser (http://www.vim.org/scripts/script.php?script_id=42)
 " Gist
 let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_open_browser_after_post=1
 let g:gist_browser_command='opera %URL% &'
-" NERDCommenter
-" NERDSnippets
 " NERDTree
 let NERDTreeCaseSensitiveSort=1
 let NERDTreeChDirMode=2
 let NERDTreeWinPos="left"
-" Surround
-" TagList http://vim-taglist.sourceforge.net
+" TagList
 let Tlist_GainFocus_On_ToggleOpen=1
 let Tlist_Show_One_File=1
 let Tlist_Use_Right_Window=1
-" Vimwiki
 
 "=============================================================================
 " Vim Tips Wiki (vim.wikia.com)
@@ -253,6 +250,7 @@ map  <C-S-Tab>             gT
 imap <C-BS>           <C-O>db
 imap <C-DEL>          <C-O>dw
 
+nmap <silent> <leader>v    :tabedit $MYVIMRC<CR>
 map  <silent> <leader>tn   :call <SID>SwitchPSCStyle(1)<CR>
 map  <silent> <leader>tp   :call <SID>SwitchPSCStyle(-1)<CR>
 
@@ -261,6 +259,8 @@ map  <silent> <leader>l    :set list!<CR>
 " Scratch
 map  <silent> <leader>s    :Sscratch<CR>
 map  <silent> <leader>S    :Scratch<CR>
+
+map  <silent> <leader>,    :set spell!<CR>
 
 " Fuf
 map  <silent> <leader>fb   :FufBuffer<CR>

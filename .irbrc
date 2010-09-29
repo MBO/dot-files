@@ -17,3 +17,4 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb.history"
 # Non stdlib
 require 'map_by_method'
 require 'what_methods'
+require 'interactive_editor'
