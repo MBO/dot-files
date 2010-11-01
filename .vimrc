@@ -154,7 +154,7 @@ endif
 " function to switch over favourite colorschemes
 function! <SID>SwitchPSCStyle(inc)
     if !exists("s:colo_tab")
-        let s:colo_tab = [ "github", "vividchalk", "norwaytoday" ,"evening", "ashen", "slate" ]
+        let s:colo_tab = [ "mustang", "vividchalk", "sorcerer", "github", "evening" ]
     endif
     if exists("s:colo_id")
         let s:colo_id = (s:colo_id + a:inc) % len(s:colo_tab)
@@ -269,6 +269,7 @@ map  <silent> <leader>fD   :FufDirWithCurrentBufferDir<CR>
 map  <silent> <leader>ff   :FufFile<CR>
 map  <silent> <leader>fF   :FufFileWithCurrentBufferDir<CR>
 map  <silent> <leader>fl   :FufLine<CR>
+map  <silent> <leader>ft   :FufBufferTag
 
 " Learn vim movements
 map  <Up>                  <Nop>
