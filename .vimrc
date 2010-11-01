@@ -271,6 +271,10 @@ map  <silent> <leader>fF   :FufFileWithCurrentBufferDir<CR>
 map  <silent> <leader>fl   :FufLine<CR>
 map  <silent> <leader>ft   :FufBufferTag
 
+" Operator camelize
+map  <silent> <leader>oc    <Plug>(operator-camelize)
+map  <silent> <leader>od    <Plug>(operator-decamelize)
+
 " Learn vim movements
 map  <Up>                  <Nop>
 map  <C-Up>                <Nop>

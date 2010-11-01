@@ -43,3 +43,9 @@
 [submodule ".vim/bundle/vim-rake"]
 	path = .vim/bundle/vim-rake
 	url = git://github.com/tpope/vim-rake.git
+[submodule ".vim/bundle/operator-camelize.vim"]
+	path = .vim/bundle/operator-camelize.vim
+	url = git://github.com/tyru/operator-camelize.vim.git
+[submodule ".vim/bundle/vim-operator-user"]
+	path = .vim/bundle/vim-operator-user
+	url = git://github.com/kana/vim-operator-user.git
