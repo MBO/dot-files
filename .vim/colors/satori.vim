@@ -1,54 +1,54 @@
 " Vim color file
-" Mainteiner: Ruda Moura <ruda@rudix.org>
-" Last Change: Mon Jul 17 23:11:05 BRT 2006
+" Maintainer: Rudá Moura <ruda.moura@gmail.com>
+" Last Change: Mon Oct 18 23:09:26 BRST 2010
 
-" Set 'background' back to the default.  The value can't always be estimated
-" and is then guessed.
 highlight clear Normal
 set background&
 
-" Remove all existing highlighting and set the defaults.
 highlight clear
 
-" Load the syntax highlighting defaults, if it's enabled.
 if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "satori"
+let colors_name = "satori"
 
 " Vim colors
-highlight Normal cterm=NONE
-highlight Comment ctermfg=Cyan cterm=NONE
-highlight Constant ctermfg=Red cterm=NONE
-highlight Number ctermfg=Blue cterm=NONE
-highlight Identifier ctermfg=NONE cterm=NONE
-highlight Statement ctermfg=NONE cterm=Bold
-highlight PreProc ctermfg=Yellow cterm=NONE
-highlight Type ctermfg=Magenta cterm=NONE
-highlight Special ctermfg=Red cterm=Bold
-highlight Function ctermfg=Green cterm=NONE
+highlight Normal     ctermfg=NONE    cterm=NONE
+highlight Comment    ctermfg=Cyan    cterm=NONE
+highlight Constant   ctermfg=Red     cterm=NONE
+highlight Number     ctermfg=Red     cterm=NONE
+highlight Identifier ctermfg=NONE    cterm=NONE
+highlight Statement  ctermfg=NONE    cterm=Bold
+highlight PreProc    ctermfg=Blue    cterm=NONE
+highlight Type       ctermfg=Magenta cterm=NONE
+highlight Special    ctermfg=Magenta cterm=NONE
+highlight Search     ctermbg=Green   cterm=NONE
+highlight MatchParen ctermbg=NONE    cterm=Inverse
+highlight Error      ctermbg=Red     cterm=NONE
+highlight Todo	     ctermbg=Cyan    cterm=NONE
 
 " Vim monochrome
-highlight Normal term=NONE
-highlight Comment term=NONE
-highlight Constant term=Bold
-highlight Number term=Bold
+highlight Normal     term=NONE
+highlight Comment    term=NONE
+highlight Constant   term=Underline
+highlight Number     term=Underline
 highlight Identifier term=NONE
-highlight Statement term=Underline
-highlight PreProc term=Underline
-highlight Type term=NONE
-highlight Special term=NONE
+highlight Statement  term=Bold
+highlight PreProc    term=NONE
+highlight Type       term=Bold
+highlight Special    term=NONE
 
 " GVim colors
-highlight Normal gui=NONE
-highlight Comment guifg=DarkCyan gui=NONE
-highlight Constant guifg=Red gui=NONE
-highlight Number guifg=Blue gui=Bold
-highlight Identifier guifg=NONE gui=NONE
-highlight Statement guifg=NONE gui=Bold
-highlight PreProc guifg=Green gui=NONE
-highlight Type guifg=Magenta gui=NONE
-highlight Special guifg=Red gui=Bold
-
-" vim: ts=2:sw=2:et
+highlight Normal     guifg=NONE     gui=NONE
+highlight Comment    guifg=DarkCyan gui=NONE
+highlight Constant   guifg=Red      gui=NONE
+highlight Number     guifg=Red      gui=Bold
+highlight Identifier guifg=NONE     gui=NONE
+highlight Statement  guifg=NONE     gui=Bold
+highlight PreProc    guifg=Blue     gui=NONE
+highlight Type       guifg=Magenta  gui=NONE
+highlight Special    guifg=Red      gui=Bold
+highlight Search     guifg=Green    gui=NONE
+highlight Error	     guifg=Red	    gui=NONE
+highlight Todo	     guifg=Cyan	    gui=NONE
