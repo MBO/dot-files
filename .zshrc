@@ -1,5 +1,5 @@
 #!/bin/zsh
-bindkey -e
+bindkey -v
 
 . ~/.zsh/functions
 #. ~/.zsh/zle
