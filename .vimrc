@@ -177,7 +177,6 @@ endfunction
 if has("unix")
     autocmd BufWritePost * call <SID>ModeChange()
 endif
-autocmd BufWritePost .vimrc source $MYVIMRC
 "=============================================================================
 " Plugins
 "-----------------------------------------------------------------------------
@@ -250,7 +249,7 @@ map  <C-S-Tab>             gT
 imap <C-BS>           <C-O>db
 imap <C-DEL>          <C-O>dw
 
-nmap <silent> <leader>v    :tabedit $MYVIMRC<CR>
+nmap <silent> <leader>v    :edit $MYVIMRC<CR>
 map  <silent> <leader>tn   :call <SID>SwitchPSCStyle(1)<CR>
 map  <silent> <leader>tp   :call <SID>SwitchPSCStyle(-1)<CR>
 
@@ -269,7 +268,10 @@ map  <silent> <leader>fD   :FufDirWithCurrentBufferDir<CR>
 map  <silent> <leader>ff   :FufFile<CR>
 map  <silent> <leader>fF   :FufFileWithCurrentBufferDir<CR>
 map  <silent> <leader>fl   :FufLine<CR>
-map  <silent> <leader>ft   :FufBufferTag
+map  <silent> <leader>ft   :FufBufferTag<CR>
+map  <silent> <leader>fc   :FufCoverageFile<CR>
+map  <silent> <leader>fh   :FufHelp<CR>
+map  <silent> <leader>fr   :FufRenewCache<CR>
 
 " Operator camelize
 map  <silent> <leader>oc    <Plug>(operator-camelize)
