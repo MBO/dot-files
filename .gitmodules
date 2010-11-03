@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/vim-operator-user"]
 	path = .vim/bundle/vim-operator-user
 	url = git://github.com/kana/vim-operator-user.git
+[submodule ".vim/bundle/vim-git"]
+	path = .vim/bundle/vim-git
+	url = git://github.com/tpope/vim-git.git
