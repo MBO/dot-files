@@ -1,4 +1,5 @@
 #!/bin/zsh
+return
 
 
 # :completion:<func>:<completer>:<command>:<argument>:<tag>

@@ -19,7 +19,9 @@ export LESS="--ignore-case --silent --RAW-CONTROL-CHARS --chop-long-lines"
 export PATH=$HOME/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/lib
 
-if [ -s $HOME/.zsh/env.d/$HOST ] ; then source $HOME/.zsh/env.d/$HOST ; fi
+[[ -s $HOME/.zsh/env.d/$HOST ]] && source $HOME/.zsh/env.d/$HOST
 
 watch=(notme)
 LOGCHECK=300
+
+skip_global_compinit=1

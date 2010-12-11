@@ -3,8 +3,8 @@
 # zsh specifics
  
 # autoload
-autoload -U compinit
-compinit
+#autoload -U compinit
+#compinit
  
 autoload zmv        #  for renaming better than your mother named you
  
@@ -15,7 +15,7 @@ autoload -U zcalc      #  for mathhhh
  
  
 # history
-HISTFILE=~/.zsh/history
+HISTFILE=~/.zsh/history/$HOST
 HISTSIZE=3000
 SAVEHIST=3000
  
