@@ -154,7 +154,7 @@ endif
 " function to switch over favourite colorschemes
 function! <SID>SwitchPSCStyle(inc)
     if !exists("s:colo_tab")
-        let s:colo_tab = [ "mustang", "vividchalk", "sorcerer", "github", "evening" ]
+        let s:colo_tab = [ "vividchalk", "sorcerer", "github", "evening" ]
     endif
     if exists("s:colo_id")
         let s:colo_id = (s:colo_id + a:inc) % len(s:colo_tab)
@@ -274,8 +274,15 @@ map  <silent> <leader>fh   :FufHelp<CR>
 map  <silent> <leader>fr   :FufRenewCache<CR>
 
 " Operator camelize
-map  <silent> <leader>oc    <Plug>(operator-camelize)
-map  <silent> <leader>od    <Plug>(operator-decamelize)
+map  <silent> <leader>oc   <Plug>(operator-camelize)
+map  <silent> <leader>od   <Plug>(operator-decamelize)
+
+" NarrowRegion
+xmap <silent> <leader>nd   <Plug>NrrwrgnDo
+map  <silent> <leader>nr   :NR<CR>
+map  <silent> <leader>nw   :WidenRegion<CR>
+map  <silent> <leader>np   :NRPrepare<CR>
+map  <silent> <leader>nm   :NRMulti<CR>
 
 " Learn vim movements
 map  <Up>                  <Nop>
