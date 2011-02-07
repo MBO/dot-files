@@ -2,3 +2,4 @@
 .zsh/history
 .zsh/cache
 .vim/spell
+.vim/bundle/*/doc/tags
