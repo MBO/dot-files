@@ -61,3 +61,6 @@
 [submodule ".vim/bundle/textobj-rubyblock"]
 	path = .vim/bundle/textobj-rubyblock
 	url = git://github.com/nelstrom/vim-textobj-rubyblock.git
+[submodule ".vim/bundle/vim-align"]
+	path = .vim/bundle/vim-align
+	url = git://github.com/pix/vim-align.git
