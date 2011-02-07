@@ -1,5 +1,7 @@
 #!/bin/zsh
-bindkey -v
+# I really like vim keybindings, but for shell emacs are just easier
+# for faster editing... at last for me
+bindkey -e
 
 ##
 ## Aliases
@@ -91,7 +93,7 @@ function roll () {
     FILE=$1
     shift
     case $FILE in
-        *.tar.bz2|*.tbz|*.tar.gz|*.tgz|*.tar.lzma|*.tlz) tar cavf "$FILE" $* ;;
+        *.tar.bz2|*.tbz|*.tar.gz|*.tgz|*.tar.lzma|*.tlz|*.tar.xz) tar cavf "$FILE" $* ;;
         *.gz) gzip "$FILE" $* ;;
         *.zip) zip -r "$FILE" $* ;;
         *.rar) rar "$FILE" $* ;;
@@ -105,7 +107,7 @@ function unroll () {
     FILE=$1
     shift
     case $FILE in
-        *.tar.bz2|*.tbz|*.tar.gz|*.tgz|*.tar.lzma|*.tlz) tar xavf "$FILE" ;;
+        *.tar.bz2|*.tbz|*.tar.gz|*.tgz|*.tar.lzma|*.tlz|*.tar.xz) tar xavf "$FILE" ;;
         *.gz) gunzip "$FILE" ;;
         *.zip) unzip "$FILE" ;;
         *.rar) unrar e "$FILE" ;;
