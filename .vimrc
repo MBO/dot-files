@@ -210,6 +210,11 @@ endif
 "au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 "au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
+" Tip to highlight spell mistakes only in insert mode
+" http://stackoverflow.com/questions/5040580/is-it-possible-to-toggle-a-vim-option-when-switching-to-insert-mode/5041384#5041384
+autocmd InsertEnter * setlocal spell
+autocmd InsertLeave * setlocal nospell
+
 map  <silent> <F1>         :set hlsearch!<CR>
 imap <silent> <F1>    <C-O>:set hlsearch!<CR>
 map  <silent> <F2>         :set wrap!<CR>
