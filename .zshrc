@@ -27,7 +27,12 @@ alias zm='zless -S'
 alias rmf='rm -rf'
 
 alias ga='git add'
-alias gs='git status -sb'
+alias gs='git status --short --branch'
+alias gd='git diff --word-diff=plain --ignore-space-change'
+
+alias be='bundle exec'
+alias b='bundle'
+alias binit='bundle install --path=vendor/'
 
 alias -g M='2>&1 | less -S'
 alias -g C='| wc -l'
