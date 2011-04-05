@@ -133,13 +133,15 @@ endif
 "-----------------------------------------------------------------------------
 " gfn:  set Font
 if has("gui_running")
-    if has("gui_gtk2")
+    if has("gui_win32")
+        set guifont=DejaVu_Sans_Mono:h10:cEASTEUROPE,Lucida_Sans_Typewriter:h10:cEASTEUROPE,Lucida_Console:h10:cEASTEUROPE,Courier_New:h10:cEASTEUROPE,Fixedys:h10:cEASTEUROPE
+    elseif has("gui_macvim")
+        set guifont=Inconsolata:h14,Monaco:h11
+    elseif has("gui_gtk2")
         set guifont=Inconsolata\ Medium\ 10,DejaVu\ Sans\ Mono\ 10,Monospace\ 10
     elseif has("x11")
         " Also for GTK 1
         set guifont=*-lucidatypewriter-medium-r-normal-*-*-100-*-*-m-*-*
-    elseif has("gui_win32")
-        set guifont=DejaVu_Sans_Mono:h10:cEASTEUROPE,Lucida_Sans_Typewriter:h10:cEASTEUROPE,Lucida_Console:h10:cEASTEUROPE,Courier_New:h10:cEASTEUROPE,Fixedys:h10:cEASTEUROPE
     endif
 
     set guioptions+=a   " go: a - autoselect
