@@ -17,6 +17,7 @@ alias ta='tree -hFugpa --dirsfirst'
 alias tfi='tree -hFugpafi --dirsfirst'
 
 alias a='ack-grep'
+alias ack='ack-grep'
 alias b='byobu'
 alias s='sudo'
 alias se='sudoedit'
@@ -25,10 +26,6 @@ alias m='less -S'
 alias zm='zless -S'
 
 alias rmf='rm -rf'
-
-alias ga='git add'
-alias gs='git status --short --branch'
-alias gd='git diff --word-diff=plain --ignore-space-change'
 
 alias be='bundle exec'
 alias b='bundle'
@@ -74,7 +71,6 @@ function src() {
 }
 
 # git functions
-function gc() { git commit -m "$*" }
 function gctmp() { git add -A && git commit -m "temporal commit: `date --rfc-3339=ns`" }
 
 function hack() {
